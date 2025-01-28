@@ -1,7 +1,7 @@
 {
     "card": [
       {
-        "id": "1",
+        "id": "01",
         "title": "Salads Item 1",
         "imageUrl": "/000004.webp",
         "description": "Delicious salads item 1.",
@@ -14,7 +14,7 @@
         "price": "$8"
       },
       {
-        "id": "2",
+        "id": "02",
         "title": "Salads Item 2",
         "imageUrl": "/000005.webp",
         "description": "Delicious salads item 2.",

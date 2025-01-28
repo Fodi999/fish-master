@@ -1,7 +1,7 @@
 {
     "card": [
       {
-        "id": "1",
+        "id": "001",
         "title": "Sets Item 1",
         "imageUrl": "/000006.webp",
         "description": "Delicious sets item 1.",
@@ -14,7 +14,7 @@
         "price": "$20"
       },
       {
-        "id": "2",
+        "id": "002",
         "title": "Sets Item 2",
         "imageUrl": "/000007.webp",
         "description": "Delicious sets item 2.",

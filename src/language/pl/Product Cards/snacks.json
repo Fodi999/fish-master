@@ -1,7 +1,7 @@
 {
     "card": [
       {
-        "id": "1",
+        "id": "0001",
         "title": "Snacks Item 1",
         "imageUrl": "/000008.webp",
         "description": "Pyszne snacks item 1.",
@@ -14,7 +14,7 @@
         "price": "5 zł"
       },
       {
-        "id": "2",
+        "id": "0002",
         "title": "Snacks Item 2",
         "imageUrl": "/000009.webp",
         "description": "Pyszne snacks item 2.",

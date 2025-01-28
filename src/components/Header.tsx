@@ -30,7 +30,7 @@ export default function Header() {
     >
       <nav className="flex justify-between items-center">
         {/* Название сайта */}
-        <h1 className="text-2xl font-bold">FISH MASTER</h1>
+        <h1 className="text-2xl font-extrabold ">FISH MASTER</h1>
 
         {/* Правый блок с кнопками */}
         <ul className="flex gap-6 items-center">
