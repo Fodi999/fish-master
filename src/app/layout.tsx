@@ -1,5 +1,6 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from '@/context/ThemeContext';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { CartProvider } from '@/context/CartContext';
@@ -41,6 +42,7 @@ export default function RootLayout({
             <CartProvider>
               <Header />
               {children}
+              <SpeedInsights />
             </CartProvider>
           </LanguageProvider>
         </ThemeProvider>
