@@ -1,0 +1,30 @@
+{
+    "card": [
+      {
+        "id": "1",
+        "title": "Sets Item 1",
+        "imageUrl": "/000006.webp",
+        "description": "Pyszne sets item 1.",
+        "buttonText": "Zamów Teraz",
+        "contentComponent": "SetsContent1",
+        "capacities": [
+          { "value": "Pojemność 1", "active": true },
+          { "value": "Pojemność 2", "active": false }
+        ],
+        "price": "20 zł"
+      },
+      {
+        "id": "2",
+        "title": "Sets Item 2",
+        "imageUrl": "/000007.webp",
+        "description": "Pyszne sets item 2.",
+        "buttonText": "Zamów Teraz",
+        "contentComponent": "SetsContent2",
+        "capacities": [
+          { "value": "Pojemność 1", "active": true },
+          { "value": "Pojemność 2", "active": false }
+        ],
+        "price": "25 zł"
+      }
+    ]
+  }

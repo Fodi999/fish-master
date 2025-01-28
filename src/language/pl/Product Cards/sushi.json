@@ -1,0 +1,30 @@
+{
+    "card": [
+      {
+        "id": "1",
+        "title": "Sushi Item 1",
+        "imageUrl": "/0000010.webp",
+        "description": "Pyszne sushi item 1.",
+        "buttonText": "Zamów Teraz",
+        "contentComponent": "SushiContent1",
+        "capacities": [
+          { "value": "Pojemność 1", "active": true },
+          { "value": "Pojemność 2", "active": false }
+        ],
+        "price": "10 zł"
+      },
+      {
+        "id": "2",
+        "title": "Sushi Item 2",
+        "imageUrl": "/0000011.webp",
+        "description": "Pyszne sushi item 2.",
+        "buttonText": "Zamów Teraz",
+        "contentComponent": "SushiContent2",
+        "capacities": [
+          { "value": "Pojemność 1", "active": true },
+          { "value": "Pojemność 2", "active": false }
+        ],
+        "price": "15 zł"
+      }
+    ]
+  }

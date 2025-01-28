@@ -1,0 +1,30 @@
+{
+    "card": [
+      {
+        "id": "1",
+        "title": "Kulki sushi z łososiem i krabem kamczackim.",
+        "imageUrl": "/000002.webp",
+        "description": "Wielkość porcji: 33 g",
+        "buttonText": "Zamów",
+        "contentComponent": "RollsContent1",
+        "capacities": [
+          { "value": "Przepis", "active": true },
+          { "value": "144 kalorie", "active": false }
+        ],
+        "price": "44 zł"
+      },
+      {
+        "id": "2",
+        "title": "Rolls Item 2",
+        "imageUrl": "/000003.webp",
+        "description": "Pyszne rolls item 2.",
+        "buttonText": "Zamów Teraz",
+        "contentComponent": "RollsContent2",
+        "capacities": [
+          { "value": "Pojemność 1", "active": true },
+          { "value": "Pojemność 2", "active": false }
+        ],
+        "price": "18 zł"
+      }
+    ]
+  }

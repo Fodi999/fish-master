@@ -1,0 +1,30 @@
+{
+    "card": [
+      {
+        "id": "1",
+        "title": "Sushi bol with salmon and Kamchatka crab",
+        "imageUrl": "/000002.webp",
+        "description": "Serving size: 33 g.",
+        "buttonText": "Order",
+        "contentComponent": "RollsContent1",
+        "capacities": [
+          { "value": "Recipe", "active": true },
+          { "value": "144 calories", "active": false }
+        ],
+        "price": "44 zł"
+      },
+      {
+        "id": "2",
+        "title": "Rolls Item 2",
+        "imageUrl": "/000003.webp",
+        "description": "Delicious rolls item 2.",
+        "buttonText": "Order Now",
+        "contentComponent": "RollsContent2",
+        "capacities": [
+          { "value": "Capacity 1", "active": true },
+          { "value": "Capacity 2", "active": false }
+        ],
+        "price": "$18"
+      }
+    ]
+  }

@@ -1,0 +1,30 @@
+{
+    "card": [
+      {
+        "id": "1",
+        "title": "Snacks Item 1",
+        "imageUrl": "/000008.webp",
+        "description": "Delicious snacks item 1.",
+        "buttonText": "Order Now",
+        "contentComponent": "SnacksContent1",
+        "capacities": [
+          { "value": "Capacity 1", "active": true },
+          { "value": "Capacity 2", "active": false }
+        ],
+        "price": "$5"
+      },
+      {
+        "id": "2",
+        "title": "Snacks Item 2",
+        "imageUrl": "/000009.webp",
+        "description": "Delicious snacks item 2.",
+        "buttonText": "Order Now",
+        "contentComponent": "SnacksContent2",
+        "capacities": [
+          { "value": "Capacity 1", "active": true },
+          { "value": "Capacity 2", "active": false }
+        ],
+        "price": "$7"
+      }
+    ]
+  }

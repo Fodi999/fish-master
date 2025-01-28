@@ -1,0 +1,30 @@
+{
+    "card": [
+      {
+        "id": "1",
+        "title": "Snacks Item 1",
+        "imageUrl": "/000008.webp",
+        "description": "Pyszne snacks item 1.",
+        "buttonText": "Zamów Teraz",
+        "contentComponent": "SnacksContent1",
+        "capacities": [
+          { "value": "Pojemność 1", "active": true },
+          { "value": "Pojemność 2", "active": false }
+        ],
+        "price": "5 zł"
+      },
+      {
+        "id": "2",
+        "title": "Snacks Item 2",
+        "imageUrl": "/000009.webp",
+        "description": "Pyszne snacks item 2.",
+        "buttonText": "Zamów Teraz",
+        "contentComponent": "SnacksContent2",
+        "capacities": [
+          { "value": "Pojemność 1", "active": true },
+          { "value": "Pojemność 2", "active": false }
+        ],
+        "price": "7 zł"
+      }
+    ]
+  }

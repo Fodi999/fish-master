@@ -1,0 +1,30 @@
+{
+    "card": [
+      {
+        "id": "1",
+        "title": "Sets Item 1",
+        "imageUrl": "/000006.webp",
+        "description": "Delicious sets item 1.",
+        "buttonText": "Order Now",
+        "contentComponent": "SetsContent1",
+        "capacities": [
+          { "value": "Capacity 1", "active": true },
+          { "value": "Capacity 2", "active": false }
+        ],
+        "price": "$20"
+      },
+      {
+        "id": "2",
+        "title": "Sets Item 2",
+        "imageUrl": "/000007.webp",
+        "description": "Delicious sets item 2.",
+        "buttonText": "Order Now",
+        "contentComponent": "SetsContent2",
+        "capacities": [
+          { "value": "Capacity 1", "active": true },
+          { "value": "Capacity 2", "active": false }
+        ],
+        "price": "$25"
+      }
+    ]
+  }
