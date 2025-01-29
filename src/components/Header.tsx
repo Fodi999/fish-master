@@ -43,7 +43,11 @@ export default function Header() {
           <li>
             <Button
               onClick={toggleLanguage}
-              className="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600"
+              className={`px-4 py-2 rounded-full ${
+                isDarkMode
+                  ? "bg-blue-700 text-white hover:bg-blue-800"
+                  : "bg-sky-600 text-white hover:bg-blue-600"
+              }`}
             >
               {language === "en" ? "PL" : "EN"}
             </Button>
@@ -52,7 +56,13 @@ export default function Header() {
           {/* Кнопка корзины с количеством товаров */}
           <li>
             <Link href="/cart/1">
-              <Button className="flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition-colors">
+              <Button
+                className={`flex items-center gap-2 px-4 py-2 rounded-full transition-colors ${
+                  isDarkMode
+                    ? "bg-red-700 text-white hover:bg-red-800"
+                    : "bg-red-500 text-white hover:bg-red-600"
+                }`}
+              >
                 <ShoppingCart size={18} />
                 <span>({cartCount})</span>
               </Button>
@@ -63,5 +73,4 @@ export default function Header() {
     </header>
   );
 }
-
 
