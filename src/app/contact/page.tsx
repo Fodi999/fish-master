@@ -2,8 +2,7 @@
 
 import React, { useState } from "react";
 import { useTheme } from "@/context/ThemeContext";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Facebook, Instagram } from "lucide-react";
 import {
   Card,
   CardHeader,
@@ -30,13 +29,12 @@ const ContactPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
     console.log("Form submitted:", formData);
   };
 
   return (
     <div
-      className={`min-h-screen pt-24 p-4 sm:p-6 transition-colors duration-300 ${
+      className={`min-h-screen pt-24 md:pt-24 p-2 sm:p-6 transition-colors duration-300 ${
         isDarkMode ? "bg-gray-900 text-gray-100" : "bg-gray-100 text-gray-900"
       }`}
     >
@@ -104,6 +102,63 @@ const ContactPage = () => {
                     </p>
                   </div>
                 </div>
+
+                {/* Social Media Links */}
+                <div className="space-y-4 pt-4">
+                  <div className="flex items-center gap-4 group">
+                    <div className={`p-4 rounded-2xl transition-all ${
+                      isDarkMode 
+                        ? "bg-gray-700 group-hover:bg-blue-600" 
+                        : "bg-gray-100 group-hover:bg-blue-500"
+                    }`}>
+                      <Facebook className={`w-6 h-6 transition-colors ${
+                        isDarkMode 
+                          ? "text-gray-300 group-hover:text-white" 
+                          : "text-gray-600 group-hover:text-white"
+                      }`}/>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold">Facebook</h3>
+                      <a
+                        href="https://facebook.com/fishmaster"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`hover:text-blue-400 transition-colors ${
+                          isDarkMode ? "text-gray-400" : "text-gray-600"
+                        }`}
+                      >
+                        @fishmaster
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4 group">
+                    <div className={`p-4 rounded-2xl transition-all ${
+                      isDarkMode 
+                        ? "bg-gray-700 group-hover:bg-pink-600" 
+                        : "bg-gray-100 group-hover:bg-pink-500"
+                    }`}>
+                      <Instagram className={`w-6 h-6 transition-colors ${
+                        isDarkMode 
+                          ? "text-gray-300 group-hover:text-white" 
+                          : "text-gray-600 group-hover:text-white"
+                      }`}/>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold">Instagram</h3>
+                      <a
+                        href="https://instagram.com/fishmaster"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`hover:text-pink-400 transition-colors ${
+                          isDarkMode ? "text-gray-400" : "text-gray-600"
+                        }`}
+                      >
+                        @fishmaster
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className={`p-6 rounded-2xl ${
@@ -127,45 +182,39 @@ const ContactPage = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Your Name
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    type="text"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className={`focus:ring-2 focus:ring-blue-400 ${
-                      isDarkMode ? "bg-gray-700 border-gray-600" : ""
-                    }`}
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
-                    Email Address
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className={`focus:ring-2 focus:ring-blue-400 ${
-                      isDarkMode ? "bg-gray-700 border-gray-600" : ""
-                    }`}
-                  />
-                </div>
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium mb-1">
+                  Name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Your Vision
+                <label htmlFor="email" className="block text-sm font-medium mb-1">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium mb-1">
+                  Message
                 </label>
                 <textarea
                   id="message"
@@ -173,25 +222,13 @@ const ContactPage = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  className={`flex h-32 w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 transition-all ${
-                    isDarkMode ? "bg-gray-700 border-gray-600" : ""
-                  }`}
+                  className="flex h-32 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 />
               </div>
 
-              <div className="flex justify-end">
-                <Button 
-                  type="submit" 
-                  className={`px-8 py-4 rounded-full font-bold transition-all duration-300 transform hover:scale-105 ${
-                    isDarkMode 
-                      ? "bg-blue-600 hover:bg-blue-700 text-white hover:shadow-2xl hover:shadow-blue-500/20" 
-                      : "bg-blue-500 hover:bg-blue-600 text-white hover:shadow-2xl hover:shadow-blue-500/20"
-                  }`}
-                >
-                  Send Message
-                  <span className="ml-3">→</span>
-                </Button>
-              </div>
+              <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">
+                Submit
+              </button>
             </form>
           </CardContent>
         </Card>

@@ -18,7 +18,7 @@
         "title": "Rolls Item 2",
         "imageUrl": "/000003.webp",
         "description": "Pyszne rolls item 2.",
-        "buttonText": "Zamów Teraz",
+        "buttonText": "Zamów ",
         "contentComponent": "RollsContent2",
         "capacities": [
           { "value": "Pojemność 1", "active": true },

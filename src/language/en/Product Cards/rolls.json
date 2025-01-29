@@ -21,8 +21,8 @@
         "buttonText": "Order Now",
         "contentComponent": "RollsContent2",
         "capacities": [
-          { "value": "Capacity 1", "active": true },
-          { "value": "Capacity 2", "active": false }
+          { "value": "Recipe", "active": true },
+          { "value": "80 calories", "active": false }
         ],
         "price": "$18"
       }

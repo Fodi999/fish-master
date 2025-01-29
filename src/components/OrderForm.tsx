@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/context/ThemeContext";
-import { Phone, User, MapPin, Home, Calendar, MessageSquare, Tag, Gift } from "lucide-react";
+import { Phone, User, MapPin, Home, Calendar, MessageSquare, Tag, Gift, Users } from "lucide-react";
 
 export default function OrderForm() {
   const { isDarkMode } = useTheme();
@@ -11,6 +11,8 @@ export default function OrderForm() {
   const [deliveryMethod, setDeliveryMethod] = useState("courier");
   const [deliveryDate, setDeliveryDate] = useState("today");
   const [city, setCity] = useState("Днепр");
+  const [deliveryTime, setDeliveryTime] = useState("");
+  const [personsCount, setPersonsCount] = useState(1);
 
   const inputStyle = `w-full p-4 rounded-xl border-2 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-all ${
     isDarkMode 
@@ -20,7 +22,21 @@ export default function OrderForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Заказ оформлен!");
+    if(deliveryDate === "scheduled" && !deliveryTime) {
+      alert("Пожалуйста, выберите время доставки!");
+      return;
+    }
+    alert(`Заказ оформлен! 
+      Время доставки: ${deliveryDate === 'today' ? 'Сегодня' : deliveryTime}
+      Количество персон: ${personsCount}`);
+  };
+
+  const handlePersonsChange = (operation: "increment" | "decrement") => {
+    setPersonsCount(prev => {
+      if(operation === "decrement" && prev > 1) return prev - 1;
+      if(operation === "increment" && prev < 10) return prev + 1;
+      return prev;
+    });
   };
 
   return (
@@ -131,6 +147,53 @@ export default function OrderForm() {
           </div>
         </div>
 
+        {/* Количество персон */}
+        <div className="space-y-6">
+          <div className="flex items-center gap-3">
+            <div className={`p-2 rounded-lg ${isDarkMode ? "bg-gray-700" : "bg-gray-100"}`}>
+              <Users className={`h-6 w-6 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`} />
+            </div>
+            <h3 className="text-xl font-semibold">Количество персон</h3>
+          </div>
+          
+          <div className="flex items-center gap-4">
+            <Button
+              type="button"
+              onClick={() => handlePersonsChange("decrement")}
+              className={`h-12 w-12 rounded-full text-2xl ${
+                isDarkMode 
+                  ? "bg-gray-700 hover:bg-gray-600" 
+                  : "bg-gray-100 hover:bg-gray-200"
+              }`}
+              disabled={personsCount === 1}
+            >
+              -
+            </Button>
+            
+            <input
+              type="number"
+              value={personsCount}
+              readOnly
+              className={`${inputStyle} w-24 text-center text-xl font-bold`}
+              min="1"
+              max="10"
+            />
+            
+            <Button
+              type="button"
+              onClick={() => handlePersonsChange("increment")}
+              className={`h-12 w-12 rounded-full text-2xl ${
+                isDarkMode 
+                  ? "bg-gray-700 hover:bg-gray-600" 
+                  : "bg-gray-100 hover:bg-gray-200"
+              }`}
+              disabled={personsCount === 10}
+            >
+              +
+            </Button>
+          </div>
+        </div>
+
         {/* Адрес доставки */}
         <div className="space-y-6">
           <div className="flex items-center gap-3">
@@ -161,6 +224,7 @@ export default function OrderForm() {
                   type="text" 
                   placeholder="Улица*" 
                   className={`${inputStyle} pl-12`} 
+                  required
                 />
               </div>
               <div className="relative">
@@ -169,6 +233,7 @@ export default function OrderForm() {
                   type="text" 
                   placeholder="Дом*" 
                   className={`${inputStyle} pl-12`} 
+                  required
                 />
               </div>
             </div>
@@ -211,6 +276,18 @@ export default function OrderForm() {
               </Button>
             ))}
           </div>
+
+          {deliveryDate === "scheduled" && (
+            <div className="mt-4">
+              <input
+                type="time"
+                value={deliveryTime}
+                onChange={(e) => setDeliveryTime(e.target.value)}
+                className={`${inputStyle}`}
+                required
+              />
+            </div>
+          )}
         </div>
 
         {/* Дополнительная информация */}
