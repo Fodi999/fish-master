@@ -4,12 +4,12 @@
         "id": "1",
         "title": "Kulki sushi z łososiem i krabem kamczackim.",
         "imageUrl": "/000002.webp",
-        "description": "Wielkość porcji: 33 g",
+        "description": "Wielkość porcji: 45 g",
         "buttonText": "Zamów",
         "contentComponent": "RollsContent1",
         "capacities": [
           { "value": "Przepis", "active": true },
-          { "value": "144 kalorie", "active": false }
+          { "value": "80 kalorie", "active": false }
         ],
         "price": "44 zł"
       },

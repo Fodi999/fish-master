@@ -95,7 +95,7 @@ export default function ProductSliders() {
   return (
     <div
       className={`min-h-screen p-8 font-sans transition-colors duration-300 ${
-        isDarkMode ? "bg-gray-900 text-gray-200" : "bg-[#F6E9E0] text-gray-900"
+        isDarkMode ? "bg-gray-900 text-gray-200" : "bg-orange-100 text-gray-900"
       }`}
     >
       {Object.keys(sections).map((category: string) => (
@@ -151,7 +151,7 @@ export default function ProductSliders() {
                     {/* capacities */}
                     <div className="flex gap-2 mt-2">
                       {section.capacities.map((capacity, idx) => {
-                        if (capacity.value === "Recipe" && capacity.active) {
+                        if (capacity.value === (language === "en" ? "Recipe" : "Przepis") && capacity.active) {
                           return (
                             <Link href={`/recipe/${section.id}`} key={idx}>
                               <span className="px-3 py-1 rounded-full border text-sm cursor-pointer bg-orange-500 text-white border-orange-500">

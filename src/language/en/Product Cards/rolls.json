@@ -4,12 +4,12 @@
         "id": "1",
         "title": "Sushi bol with salmon and Kamchatka crab",
         "imageUrl": "/000002.webp",
-        "description": "Serving size: 33 g.",
+        "description": "Serving size: 45 g.",
         "buttonText": "Order",
         "contentComponent": "RollsContent1",
         "capacities": [
           { "value": "Recipe", "active": true },
-          { "value": "144 calories", "active": false }
+          { "value": "80 calories", "active": false }
         ],
         "price": "44 zł"
       },

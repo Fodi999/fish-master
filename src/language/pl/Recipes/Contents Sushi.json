@@ -1,32 +1,30 @@
 {
-    "contents": [
-      {
-        "id": "1",
-        "content": "To jest bogaty i pyszny przepis na ciasto czekoladowe.",
-        "noPrevText": "Brak poprzedniej karty",
-        "noNextText": "Brak następnej karty",
-        "prevText": "Poprzednia",
-        "nextText": "Następna",
-        "goToText": "Idź do",
-        "ingredients": [
-          { "name": "Mąka", "quantity": "2 filiżanki" },
-          { "name": "Cukier", "quantity": "1,5 filiżanki" },
-          { "name": "Proszek kakaowy", "quantity": "0,5 filiżanki" },
-          { "name": "Proszek do pieczenia", "quantity": "1,5 łyżeczki" },
-          { "name": "Sól", "quantity": "1 łyżeczka" },
-          { "name": "Jajka", "quantity": "2" },
-          { "name": "Mleko", "quantity": "1 filiżanka" },
-          { "name": "Olej roślinny", "quantity": "0,5 filiżanki" },
-          { "name": "Ekstrakt waniliowy", "quantity": "2 łyżeczki" },
-          { "name": "Wrząca woda", "quantity": "1 filiżanka" }
-        ],
-        "yield": "Porcje dla 8-10 osób",
-        "code": "123456",
-        "verifyTitle": "Zweryfikuj swoje konto",
-        "verifyDescription": "Wysłaliśmy 6-cyfrowy kod na Twój e-mail. Wprowadź go poniżej, aby potwierdzić swoje konto.",
-        "verifyButtonText": "Zweryfikuj",
-        "cardNotFoundTitle": "Karta nie znaleziona",
-        "backToHomeLinkText": "← Powrót do strony głównej"
-      }
-    ]
-  }
+  "contents": [
+    {
+      "id": "1",
+      "content": "Kulki sushi z łososiem i krabem Królewski-przepis.",
+      "noPrevText": "Technologia gotowania: Aby otworzyć, wprowadź kod:",
+      "ingredientsHeader": "Składniki",
+      "tableHeaders": {
+        "ingredient": "Składnik",
+        "quantity": "Ilość"
+      },
+      "ingredients": [
+        { "name": "Ryż do sushi", "quantity": "15 g." },
+        { "name": "Łosoś", "quantity": "15 g." },
+        { "name": "Krab królewski", "quantity": "5 g." },
+        { "name": "Ser Philadelphia", "quantity": "5 g." },
+        { "name": "Kawior z łososia", "quantity": "2 g." },
+        { "name": "Zielona cebulka", "quantity": "0,5 g." },
+        { "name": "Sos pikantny", "quantity": "2 g." }
+      ],
+      "yield": "Łączna waga 45 g.",
+      "code": "123456",
+      "verifyTitle": "Sprawdź swój kod:",
+      "verifyDescription": "Wysłaliśmy 6-cyfrowy kod na Twój e-mail. Wpisz go tutaj, aby potwierdzić konto.",
+      "verifyButtonText": "Zweryfikuj",
+      "cardNotFoundTitle": "Karta nie znaleziona",
+      "backToHomeLinkText": "← Powrót do strony głównej"
+    }
+  ]
+}

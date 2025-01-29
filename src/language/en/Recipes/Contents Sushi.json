@@ -1,32 +1,30 @@
 {
-    "contents": [
-      {
-        "id": "1",
-        "content": "This is a rich and delicious chocolate cake recipe.",
-        "noPrevText": "No previous card",
-        "noNextText": "No next card",
-        "prevText": "Previous",
-        "nextText": "Next",
-        "goToText": "Go to",
-        "ingredients": [
-          { "name": "Flour", "quantity": "2 cups" },
-          { "name": "Sugar", "quantity": "1.5 cups" },
-          { "name": "Cocoa powder", "quantity": "0.5 cups" },
-          { "name": "Baking powder", "quantity": "1.5 tsp" },
-          { "name": "Salt", "quantity": "1 tsp" },
-          { "name": "Eggs", "quantity": "2" },
-          { "name": "Milk", "quantity": "1 cup" },
-          { "name": "Vegetable oil", "quantity": "0.5 cup" },
-          { "name": "Vanilla extract", "quantity": "2 tsp" },
-          { "name": "Boiling water", "quantity": "1 cup" }
-        ],
-        "yield": "Serves 8-10",
-        "code": "123456",
-        "verifyTitle": "Verify Your Account",
-        "verifyDescription": "We've sent a 6-digit code to your email. Enter it below to confirm your account.",
-        "verifyButtonText": "Verify",
-        "cardNotFoundTitle": "Card not found",
-        "backToHomeLinkText": "← Back to Home"
-      }
-    ]
+  "contents": [
+    {
+      "id": "1",
+      "content": "Sushi ball with salmon and Kamchatka crab-recipe.",
+      "noPrevText": "Cooking technology: To open enter the code:",
+      "ingredientsHeader": "Ingredients",
+      "tableHeaders": {
+        "ingredient": "Ingredient",
+        "quantity": "Quantity"
+      },
+      "ingredients": [
+        { "name": "Sushi rice", "quantity": "15 g." },
+        { "name": "Salmon", "quantity": "15 g." },
+        { "name": "King Crab", "quantity": "5 g." },
+        { "name": "Philadelphia cheese", "quantity": "5 g." },
+        { "name": "Salmon caviar", "quantity": "2 g." },
+        { "name": "Green onions", "quantity": "0.5 g." },
+        { "name": "Spicy sauce", "quantity": "2 g." }
+      ],
+      "yield": "Total weight 45 g.",
+      "code": "123456",
+      "verifyTitle": "Verify Your Cod:",
+      "verifyDescription": "We've sent a 6-digit code to your email. Enter it below to confirm your account.",
+      "verifyButtonText": "Verify",
+      "cardNotFoundTitle": "Card not found",
+      "backToHomeLinkText": "← Back to Home"
     }
+  ]
+}

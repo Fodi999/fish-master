@@ -6,7 +6,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/context/ThemeContext";
 import Link from "next/link";
-import { ShoppingCart } from "lucide-react"; // Иконка корзины
+import { ShoppingCart, Sun, Moon } from "lucide-react"; // Иконки
 
 // Импортируем хук корзины из CartContext
 import { useCart } from "@/context/CartContext";
@@ -24,7 +24,7 @@ export default function Header() {
 
   return (
     <header
-      className={`p-6 transition-colors duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 p-6 transition-colors duration-300 ${
         isDarkMode ? "bg-gray-900 text-gray-100" : "bg-[#F6E9E0] text-gray-900"
       }`}
     >
@@ -35,8 +35,10 @@ export default function Header() {
         {/* Правый блок с кнопками */}
         <ul className="flex gap-6 items-center">
           {/* Переключатель темы */}
-          <li>
+          <li className="flex items-center">
+            <Sun className="mr-2" size={18} />
             <Switch onCheckedChange={toggleTheme} checked={isDarkMode} />
+            <Moon className="ml-2" size={18} />
           </li>
 
           {/* Переключатель языка */}
@@ -73,4 +75,3 @@ export default function Header() {
     </header>
   );
 }
-

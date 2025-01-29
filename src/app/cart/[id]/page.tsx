@@ -45,7 +45,7 @@ export default function CartPage() {
 
   return (
     <div
-      className={`min-h-screen p-4 sm:p-6 ${
+      className={`min-h-screen pt-24 p-4 sm:p-6 ${
         isDarkMode ? "bg-gray-900 text-gray-100" : "bg-gray-100 text-gray-900"
       }`}
     >
