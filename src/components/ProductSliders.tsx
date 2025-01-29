@@ -9,20 +9,18 @@ import { ShoppingCart, Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-// Импорт данных (JSON) с товарами
+// Импорт данных
 import enRolls from "@/language/en/Product Cards/rolls.json";
 import enSalads from "@/language/en/Product Cards/salads.json";
 import enSets from "@/language/en/Product Cards/sets.json";
 import enSnacks from "@/language/en/Product Cards/snacks.json";
 import enSushi from "@/language/en/Product Cards/sushi.json";
-
 import plRolls from "@/language/pl/Product Cards/rolls.json";
 import plSalads from "@/language/pl/Product Cards/salads.json";
 import plSets from "@/language/pl/Product Cards/sets.json";
 import plSnacks from "@/language/pl/Product Cards/snacks.json";
 import plSushi from "@/language/pl/Product Cards/sushi.json";
 
-/** Интерфейс товара */
 interface ProductSection {
   id: string;
   title: string;
@@ -37,44 +35,22 @@ interface ProductSection {
   next?: string | null;
 }
 
-interface Category {
-  card: ProductSection[];
-}
-
-/** Данные для en и pl */
 const pageSections: {
-  en: { [key: string]: Category };
-  pl: { [key: string]: Category };
+  en: { [key: string]: { card: ProductSection[] } };
+  pl: { [key: string]: { card: ProductSection[] } };
 } = {
-  en: {
-    rolls: enRolls,
-    salads: enSalads,
-    sets: enSets,
-    snacks: enSnacks,
-    sushi: enSushi,
-  },
-  pl: {
-    rolls: plRolls,
-    salads: plSalads,
-    sets: plSets,
-    snacks: plSnacks,
-    sushi: plSushi,
-  },
+  en: { rolls: enRolls, salads: enSalads, sets: enSets, snacks: enSnacks, sushi: enSushi },
+  pl: { rolls: plRolls, salads: plSalads, sets: plSets, snacks: plSnacks, sushi: plSushi },
 };
 
 export default function ProductSliders() {
-  // Контексты: язык, тема, корзина
   const { language } = useLanguage();
   const { isDarkMode } = useTheme();
   const { addToCart } = useCart();
-
-  // Локальное состояние лайков: ключ = id карточки, значение = кол-во лайков
   const [likes, setLikes] = useState<{ [productId: string]: number }>({});
 
-  // Подбираем нужный набор JSON в зависимости от языка
   const sections = pageSections[language as "en" | "pl"];
 
-  // Функция добавления в корзину
   const handleOrderClick = (section: ProductSection) => {
     addToCart({
       ...section,
@@ -84,114 +60,118 @@ export default function ProductSliders() {
     });
   };
 
-  // Функция для лайка конкретной карточки по её id
   const handleLikeClick = (id: string) => {
-    setLikes((prev) => ({
-      ...prev,
-      [id]: (prev[id] || 0) + 1, // инкрементируем счётчик
-    }));
+    setLikes((prev) => ({ ...prev, [id]: (prev[id] || 0) + 1 }));
   };
 
   return (
-    <div
-      className={`min-h-screen p-8 font-sans transition-colors duration-300 ${
-        isDarkMode ? "bg-gray-900 text-gray-200" : "bg-orange-100 text-gray-900"
-      }`}
-    >
-      {Object.keys(sections).map((category: string) => (
-        <div key={category} className="mb-8">
-          <h2 className="text-2xl font-bold mb-4 capitalize">{category}</h2>
+    <div className={`min-h-screen p-8 font-sans transition-colors duration-300 ${
+      isDarkMode ? "bg-gray-900 text-gray-200" : "bg-orange-50 text-gray-900"
+    }`}>
+      {Object.keys(sections).map((category) => (
+        <section key={category} className="mb-16 animate-fade-in">
+          <h2 className={`text-3xl md:text-4xl font-bold mb-8 bg-gradient-to-r from-blue-400 to-teal-500 bg-clip-text text-transparent`}>
+            {category.charAt(0).toUpperCase() + category.slice(1)}
+          </h2>
 
-          {/* Горизонтальная прокрутка */}
-          <div className="overflow-x-auto scroll-smooth flex gap-8 px-4">
-            {sections[category].card.map((section, index) => {
-              // Текущее число лайков для конкретной карточки
+          <div className="overflow-x-auto scroll-smooth flex gap-8 pb-6 scrollbar-hide">
+            {sections[category].card.map((section: ProductSection) => {
               const likeCount = likes[section.id] || 0;
-              // Цвет сердца: красный, если likeCount > 0
-              const heartColor = likeCount > 0 ? "text-red-500" : "text-gray-600";
+              const heartColor = likeCount > 0 ? "text-red-500 fill-red-500" : "text-gray-400";
 
               return (
                 <Card
-                  key={`${section.id}-${index}`}
-                  className="shrink-0 w-80 rounded-3xl overflow-hidden shadow-lg bg-white dark:bg-gray-800"
+                  key={section.id}
+                  className={`shrink-0 w-80 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl ${
+                    isDarkMode ? "bg-gray-800" : "bg-white"
+                  } hover:-translate-y-2`}
                 >
-                  {/* Блок с картинкой */}
-                  <div className="relative">
+                  <div className="relative group">
                     <Image
                       src={section.imageUrl}
                       alt={section.title}
-                      width={500}
+                      width={400}
                       height={300}
-                      className="w-full h-64 object-cover"
-                      priority={section.id === "1"}
+                      className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
+                      priority
                     />
-                    {/* Кнопка лайка */}
                     <button
                       onClick={() => handleLikeClick(section.id)}
-                      className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-md"
+                      className={`absolute top-4 right-4 p-2 rounded-full backdrop-blur-sm transition-all ${
+                        isDarkMode 
+                          ? "bg-gray-800/30 hover:bg-gray-700/50" 
+                          : "bg-white/80 hover:bg-white"
+                      }`}
                     >
-                      <Heart className={heartColor} size={20} />
+                      <Heart className={`${heartColor} transition-colors`} size={24} />
                     </button>
-
-                    {/* Отображение количества лайков, если > 0 */}
                     {likeCount > 0 && (
-                      <span className="absolute top-4 right-14 bg-white text-red-500 font-bold px-2 py-1 rounded-full shadow-md text-sm">
-                        {likeCount}
+                      <span className="absolute top-4 right-16 bg-white/80 dark:bg-gray-800/80 px-2.5 py-1 rounded-full text-sm font-bold backdrop-blur-sm">
+                        ❤️ {likeCount}
                       </span>
                     )}
                   </div>
 
-                  {/* Контент карточки */}
                   <CardHeader className="p-6">
-                    {/* Заголовок */}
-                    <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                    <h1 className={`text-xl font-bold ${
+                      isDarkMode ? "text-gray-100" : "text-gray-900"
+                    }`}>
                       {section.title}
                     </h1>
 
-                    {/* capacities */}
-                    <div className="flex gap-2 mt-2">
-                      {section.capacities.map((capacity, idx) => {
-                        if (capacity.value === (language === "en" ? "Recipe" : "Przepis") && capacity.active) {
-                          return (
-                            <Link href={`/recipe/${section.id}`} key={idx}>
-                              <span className="px-3 py-1 rounded-full border text-sm cursor-pointer bg-orange-500 text-white border-orange-500">
-                                {capacity.value}
-                              </span>
-                            </Link>
-                          );
-                        } else {
-                          return (
-                            <span
-                              key={idx}
-                              className={`px-3 py-1 rounded-full border text-sm ${
-                                capacity.active
-                                  ? "bg-orange-500 text-white border-orange-500"
-                                  : "border-gray-300 text-gray-600 dark:border-gray-600 dark:text-gray-300"
-                              }`}
-                            >
-                              {capacity.value}
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      {section.capacities.map((capacity: { value: string; active: boolean }, idx: number) => (
+                        capacity.value.toLowerCase() === "recipe" && capacity.active ? (
+                          <Link href={`/recipe/${section.id}`} key={idx}>
+                            <span className={`px-3 py-1 rounded-full text-sm flex items-center gap-2 transition-all ${
+                              isDarkMode
+                                ? "bg-blue-600/20 text-blue-400 hover:bg-blue-600/30"
+                                : "bg-blue-100 text-blue-600 hover:bg-blue-200"
+                            }`}>
+                              📖 {capacity.value}
                             </span>
-                          );
-                        }
-                      })}
+                          </Link>
+                        ) : (
+                          <span
+                            key={idx}
+                            className={`px-3 py-1 rounded-full text-sm border transition-all ${
+                              capacity.active
+                                ? `${isDarkMode 
+                                    ? "bg-teal-600/20 text-teal-400 border-teal-600/30" 
+                                    : "bg-teal-100 text-teal-600 border-teal-200"}`
+                                : `${isDarkMode 
+                                    ? "border-gray-700 text-gray-400" 
+                                    : "border-gray-200 text-gray-600"}`
+                            }`}
+                          >
+                            {capacity.value}
+                          </span>
+                        )
+                      ))}
                     </div>
 
-                    {/* Описание */}
-                    <p className="mt-4 text-sm text-gray-700 dark:text-gray-300">
+                    <p className={`mt-4 text-sm ${
+                      isDarkMode ? "text-gray-400" : "text-gray-600"
+                    }`}>
                       {section.description}
                     </p>
 
-                    {/* Цена + кнопка "Order" */}
                     <div className="flex justify-between items-center mt-6">
-                      <span className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                      <span className={`text-xl font-bold ${
+                        isDarkMode ? "text-blue-400" : "text-blue-600"
+                      }`}>
                         {section.price}
                       </span>
                       <button
                         onClick={() => handleOrderClick(section)}
-                        className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition-colors"
+                        className={`flex items-center gap-2 px-5 py-3 rounded-full font-semibold transition-all ${
+                          isDarkMode
+                            ? "bg-blue-600 hover:bg-blue-700 text-white hover:shadow-blue-600/30"
+                            : "bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white hover:shadow-xl"
+                        } hover:shadow-lg hover:scale-105`}
                       >
-                        <ShoppingCart size={18} />
-                        <span>{section.buttonText}</span>
+                        <ShoppingCart size={20} />
+                        {section.buttonText}
                       </button>
                     </div>
                   </CardHeader>
@@ -199,7 +179,7 @@ export default function ProductSliders() {
               );
             })}
           </div>
-        </div>
+        </section>
       ))}
     </div>
   );

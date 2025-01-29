@@ -2,37 +2,56 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import { useTheme } from "@/context/ThemeContext";
 
 const ButtonGroup = () => {
+  const { isDarkMode } = useTheme();
+
   return (
-    <div className="pt-24 overflow-x-auto p-4 bg-orange-100 dark:bg-gray-800 shadow-md">
-      <div className="flex space-x-4">
-        <Link href="/about">
-          <Button 
-            className="flex items-center justify-center w-full sm:w-auto px-6 py-6 bg-gradient-to-br from-blue-800 to-blue-800 hover:from-blue-800 hover:to-blue-900 
-            text-white font-bold rounded-full shadow-md hover:shadow-lg transition-all duration-300
-            transform hover:-translate-y-0.5 active:scale-95"
-          >
-            <Image
-              src="/Feis-1 (1).webp"
-              alt="Icon"
-              width={40}
-              height={40}
-              className="mr-2"
-            />
-            About the Project Dima Fomin
-          </Button>
-        </Link>
-        
-        <Link href="/contact">
-          <Button 
-            className="w-full sm:w-auto px-6 py-6 bg-gradient-to-br from-green-800 to-green-600 hover:from-green-600 hover:to-green-700 
-            text-white font-bold rounded-full shadow-md hover:shadow-lg transition-all duration-300
-            transform hover:-translate-y-0.5 active:scale-95"
-          >
-            Contact
-          </Button>
-        </Link>
+    <div className={`pt-24 p-4 transition-colors duration-300 ${
+      isDarkMode ? "bg-gray-900" : "bg-orange-50"
+    }`}>
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col sm:flex-row gap-4 animate-fade-in">
+          <Link href="/about" className="flex-1">
+            <Button 
+              className={`w-full h-16 sm:h-20 px-6 rounded-2xl flex items-center justify-center gap-3 
+                transition-all duration-300 transform hover:-translate-y-1 active:scale-95
+                bg-gradient-to-br shadow-lg hover:shadow-xl ${
+                  isDarkMode 
+                    ? "from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white" 
+                    : "from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white"
+                }`}
+            >
+              <Image
+                src="/Feis-1 (1).webp"
+                alt="Icon"
+                width={40}
+                height={40}
+                className={`mr-2 ${isDarkMode ? "filter brightness-125" : ""}`}
+              />
+              <span className="text-sm sm:text-lg font-bold">
+                About the Project
+              </span>
+            </Button>
+          </Link>
+          
+          <Link href="/contact" className="flex-1">
+            <Button 
+              className={`w-full h-16 sm:h-20 px-6 rounded-2xl flex items-center justify-center 
+                transition-all duration-300 transform hover:-translate-y-1 active:scale-95
+                bg-gradient-to-br shadow-lg hover:shadow-xl ${
+                  isDarkMode 
+                    ? "from-gray-800 to-gray-700 hover:from-gray-700 hover:to-gray-600 text-white" 
+                    : "from-gray-200 to-gray-100 hover:from-gray-100 hover:to-gray-50 text-gray-900"
+                }`}
+            >
+              <span className="text-sm sm:text-lg font-bold">
+                Contact Master
+              </span>
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
   );

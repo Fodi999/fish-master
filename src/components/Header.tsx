@@ -6,16 +6,12 @@ import { useLanguage } from "@/context/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/context/ThemeContext";
 import Link from "next/link";
-import { ShoppingCart, Sun, Moon } from "lucide-react"; // Иконки
-
-// Импортируем хук корзины из CartContext
+import { ShoppingCart, Sun, Moon } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
 export default function Header() {
   const { language, setLanguage } = useLanguage();
   const { isDarkMode, toggleTheme } = useTheme();
-
-  // Получаем кол-во товаров в корзине из контекста
   const { cartCount } = useCart();
 
   const toggleLanguage = () => {
@@ -24,53 +20,103 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 p-6 transition-colors duration-300 ${
-        isDarkMode ? "bg-gray-900 text-gray-100" : "bg-[#F6E9E0] text-gray-900"
+      className={`fixed top-0 left-0 right-0 z-50 p-4 transition-colors duration-300 ${
+        isDarkMode 
+          ? "bg-gray-900 text-gray-100 border-b border-gray-700" 
+          : "bg-[#F6E9E0] text-gray-900 border-b border-gray-200"
       }`}
     >
-      <nav className="flex justify-between items-center">
-        {/* Название сайта */}
-        <h1 className="text-2xl font-extrabold ">FISH MASTER</h1>
+      <nav className="flex justify-between items-center max-w-6xl mx-auto">
+        {/* Логотип - одинаковый для всех устройств */}
+        <Link href="/" className="flex items-center gap-2 group">
+          <h1 className="text-xl md:text-2xl font-extrabold bg-gradient-to-r from-blue-400 to-teal-500 bg-clip-text text-transparent">
+            FISH MASTER
+          </h1>
+        </Link>
 
-        {/* Правый блок с кнопками */}
-        <ul className="flex gap-6 items-center">
+        {/* Десктопная версия */}
+        <div className="hidden md:flex items-center gap-4">
           {/* Переключатель темы */}
-          <li className="flex items-center">
-            <Sun className="mr-2" size={18} />
-            <Switch onCheckedChange={toggleTheme} checked={isDarkMode} />
-            <Moon className="ml-2" size={18} />
-          </li>
+          <div className="flex items-center gap-2">
+            <Sun className="h-4 w-4" />
+            <Switch
+              onCheckedChange={toggleTheme}
+              checked={isDarkMode}
+            />
+            <Moon className="h-4 w-4" />
+          </div>
 
           {/* Переключатель языка */}
-          <li>
+          <Button
+            onClick={toggleLanguage}
+            className={`rounded-full px-4 py-2 font-medium transition-all ${
+              isDarkMode
+                ? "bg-gray-800 hover:bg-gray-700 text-gray-300"
+                : "bg-gray-200 hover:bg-gray-300 text-gray-700"
+            }`}
+          >
+            {language === "en" ? "Polski" : "English"}
+          </Button>
+
+          {/* Корзина */}
+          <Link href="/cart/1">
             <Button
-              onClick={toggleLanguage}
-              className={`px-4 py-2 rounded-full ${
+              className={`relative rounded-full px-4 py-2 transition-all flex gap-2 ${
                 isDarkMode
-                  ? "bg-blue-700 text-white hover:bg-blue-800"
-                  : "bg-sky-600 text-white hover:bg-blue-600"
+                  ? "bg-blue-600 hover:bg-blue-700 text-white"
+                  : "bg-blue-500 hover:bg-blue-600 text-white"
               }`}
             >
-              {language === "en" ? "PL" : "EN"}
+              <ShoppingCart className="h-5 w-5" />
+              <span>Cart</span>
+              {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 rounded-full px-2 py-1 text-xs font-bold bg-red-500 text-white">
+                  {cartCount}
+                </span>
+              )}
             </Button>
-          </li>
+          </Link>
+        </div>
 
-          {/* Кнопка корзины с количеством товаров */}
-          <li>
-            <Link href="/cart/1">
-              <Button
-                className={`flex items-center gap-2 px-4 py-2 rounded-full transition-colors ${
-                  isDarkMode
-                    ? "bg-red-700 text-white hover:bg-red-800"
-                    : "bg-red-500 text-white hover:bg-red-600"
-                }`}
-              >
-                <ShoppingCart size={18} />
-                <span>({cartCount})</span>
-              </Button>
-            </Link>
-          </li>
-        </ul>
+        {/* Мобильная версия */}
+        <div className="flex md:hidden items-center gap-3">
+          {/* Переключатель языка */}
+          <Button
+            onClick={toggleLanguage}
+            variant="ghost"
+            className="rounded-full p-2 text-sm"
+          >
+            {language === "en" ? "PL" : "EN"}
+          </Button>
+
+          {/* Переключатель темы */}
+          <Button
+            variant="ghost"
+            onClick={toggleTheme}
+            className="p-2"
+          >
+            {isDarkMode ? (
+              <Moon className="h-5 w-5" />
+            ) : (
+              <Sun className="h-5 w-5" />
+            )}
+          </Button>
+
+          {/* Корзина */}
+          <Link href="/cart/1">
+            <Button
+              variant="ghost"
+              className="relative p-2"
+            >
+              <ShoppingCart className="h-5 w-5" />
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 rounded-full px-1.5 py-0.5 text-xs font-bold bg-red-500 text-white">
+                  {cartCount}
+                </span>
+              )}
+            </Button>
+          </Link>
+        </div>
       </nav>
     </header>
   );
