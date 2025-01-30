@@ -1,30 +1,69 @@
 {
-    "card": [
-      {
-        "id": "0001",
-        "title": "Snacks Item 1",
-        "imageUrl": "/000008.webp",
-        "description": "Pyszne snacks item 1.",
-        "buttonText": "Zamów Teraz",
-        "contentComponent": "SnacksContent1",
-        "capacities": [
-          { "value": "Pojemność 1", "active": true },
-          { "value": "Pojemność 2", "active": false }
-        ],
-        "price": "5 zł"
-      },
-      {
-        "id": "0002",
-        "title": "Snacks Item 2",
-        "imageUrl": "/000009.webp",
-        "description": "Pyszne snacks item 2.",
-        "buttonText": "Zamów Teraz",
-        "contentComponent": "SnacksContent2",
-        "capacities": [
-          { "value": "Pojemność 1", "active": true },
-          { "value": "Pojemność 2", "active": false }
-        ],
-        "price": "7 zł"
-      }
-    ]
-  }
+  "card": [
+    {
+      "id": "0001",
+      "title": "Snacks Item 1",
+      "imageUrl": "/0000017.webp",
+      "description": "Pyszne snacks item 1.",
+      "buttonText": "Zamów Teraz",
+      "contentComponent": "SnacksContent1",
+      "capacities": [
+        { "value": "Pojemność 1", "active": true },
+        { "value": "Pojemność 2", "active": false }
+      ],
+      "price": "5 zł"
+    },
+    {
+      "id": "0002",
+      "title": "Snacks Item 2",
+      "imageUrl": "/0000018.webp",
+      "description": "Pyszne snacks item 2.",
+      "buttonText": "Zamów Teraz",
+      "contentComponent": "SnacksContent2",
+      "capacities": [
+        { "value": "Pojemność 1", "active": true },
+        { "value": "Pojemność 2", "active": false }
+      ],
+      "price": "7 zł"
+    },
+    {
+      "id": "0003",
+      "title": "Paluszki Serowe",
+      "imageUrl": "/0000019.webp",
+      "description": "Chrupiące paluszki serowe z sosem marinara.",
+      "buttonText": "Zamów Teraz",
+      "contentComponent": "SnacksContent3",
+      "capacities": [
+        { "value": "Pojemność 1", "active": true },
+        { "value": "Pojemność 2", "active": false }
+      ],
+      "price": "6 zł"
+    },
+    {
+      "id": "0004",
+      "title": "Skrzydełka Kurczaka",
+      "imageUrl": "/0000020.webp",
+      "description": "Pikantne skrzydełka kurczaka z sosem ranch.",
+      "buttonText": "Zamów Teraz",
+      "contentComponent": "SnacksContent4",
+      "capacities": [
+        { "value": "Pojemność 1", "active": true },
+        { "value": "Pojemność 2", "active": false }
+      ],
+      "price": "8 zł"
+    },
+    {
+      "id": "0005",
+      "title": "Talerz Warzyw",
+      "imageUrl": "/0000021.webp",
+      "description": "Świeży talerz warzyw z hummusem.",
+      "buttonText": "Zamów Teraz",
+      "contentComponent": "SnacksContent5",
+      "capacities": [
+        { "value": "Pojemność 1", "active": true },
+        { "value": "Pojemność 2", "active": false }
+      ],
+      "price": "9 zł"
+    }
+  ]
+}

@@ -1,30 +1,69 @@
 {
-    "card": [
-      {
-        "id": "01",
-        "title": "Salads Item 1",
-        "imageUrl": "/000004.webp",
-        "description": "Pyszne salads item 1.",
-        "buttonText": "Zamów Teraz",
-        "contentComponent": "SaladsContent1",
-        "capacities": [
-          { "value": "Pojemność 1", "active": true },
-          { "value": "Pojemność 2", "active": false }
-        ],
-        "price": "8 zł"
-      },
-      {
-        "id": "02",
-        "title": "Salads Item 2",
-        "imageUrl": "/000005.webp",
-        "description": "Pyszne salads item 2.",
-        "buttonText": "Zamów Teraz",
-        "contentComponent": "SaladsContent2",
-        "capacities": [
-          { "value": "Pojemność 1", "active": true },
-          { "value": "Pojemność 2", "active": false }
-        ],
-        "price": "10 zł"
-      }
-    ]
-  }
+  "card": [
+    {
+      "id": "01",
+      "title": "Salads Item 1",
+      "imageUrl": "/000007.webp",
+      "description": "Pyszne salads item 1.",
+      "buttonText": "Zamów Teraz",
+      "contentComponent": "SaladsContent1",
+      "capacities": [
+        { "value": "Pojemność 1", "active": true },
+        { "value": "Pojemność 2", "active": false }
+      ],
+      "price": "8 zł"
+    },
+    {
+      "id": "02",
+      "title": "Salads Item 2",
+      "imageUrl": "/000008.webp",
+      "description": "Pyszne salads item 2.",
+      "buttonText": "Zamów Teraz",
+      "contentComponent": "SaladsContent2",
+      "capacities": [
+        { "value": "Pojemność 1", "active": true },
+        { "value": "Pojemność 2", "active": false }
+      ],
+      "price": "10 zł"
+    },
+    {
+      "id": "03",
+      "title": "Greek Salad",
+      "imageUrl": "/000009.webp",
+      "description": "Świeża sałatka grecka z fetą i oliwkami.",
+      "buttonText": "Zamów Teraz",
+      "contentComponent": "SaladsContent3",
+      "capacities": [
+        { "value": "Pojemność 1", "active": true },
+        { "value": "Pojemność 2", "active": false }
+      ],
+      "price": "12 zł"
+    },
+    {
+      "id": "04",
+      "title": "Caesar Salad",
+      "imageUrl": "/0000010.webp",
+      "description": "Klasyczna sałatka Caesar z kurczakiem i parmezanem.",
+      "buttonText": "Zamów Teraz",
+      "contentComponent": "SaladsContent4",
+      "capacities": [
+        { "value": "Pojemność 1", "active": true },
+        { "value": "Pojemność 2", "active": false }
+      ],
+      "price": "15 zł"
+    },
+    {
+      "id": "05",
+      "title": "Vegetarian Salad",
+      "imageUrl": "/0000011.webp",
+      "description": "Lekka sałatka wegetariańska z warzywami sezonowymi.",
+      "buttonText": "Zamów Teraz",
+      "contentComponent": "SaladsContent5",
+      "capacities": [
+        { "value": "Pojemność 1", "active": true },
+        { "value": "Pojemność 2", "active": false }
+      ],
+      "price": "11 zł"
+    }
+  ]
+}

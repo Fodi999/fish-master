@@ -1,30 +1,69 @@
 {
-    "card": [
-      {
-        "id": "0001",
-        "title": "Snacks Item 1",
-        "imageUrl": "/000008.webp",
-        "description": "Delicious snacks item 1.",
-        "buttonText": "Order Now",
-        "contentComponent": "SnacksContent1",
-        "capacities": [
-          { "value": "Capacity 1", "active": true },
-          { "value": "Capacity 2", "active": false }
-        ],
-        "price": "$5"
-      },
-      {
-        "id": "0002",
-        "title": "Snacks Item 2",
-        "imageUrl": "/000009.webp",
-        "description": "Delicious snacks item 2.",
-        "buttonText": "Order Now",
-        "contentComponent": "SnacksContent2",
-        "capacities": [
-          { "value": "Capacity 1", "active": true },
-          { "value": "Capacity 2", "active": false }
-        ],
-        "price": "$7"
-      }
-    ]
-  }
+  "card": [
+    {
+      "id": "0001",
+      "title": "Snacks Item 1",
+      "imageUrl": "/0000017.webp",
+      "description": "Delicious snacks item 1.",
+      "buttonText": "Order Now",
+      "contentComponent": "SnacksContent1",
+      "capacities": [
+        { "value": "Capacity 1", "active": true },
+        { "value": "Capacity 2", "active": false }
+      ],
+      "price": "$5"
+    },
+    {
+      "id": "0002",
+      "title": "Snacks Item 2",
+      "imageUrl": "/0000018.webp",
+      "description": "Delicious snacks item 2.",
+      "buttonText": "Order Now",
+      "contentComponent": "SnacksContent2",
+      "capacities": [
+        { "value": "Capacity 1", "active": true },
+        { "value": "Capacity 2", "active": false }
+      ],
+      "price": "$7"
+    },
+    {
+      "id": "0003",
+      "title": "Cheese Sticks",
+      "imageUrl": "/0000019.webp",
+      "description": "Crispy cheese sticks with a side of marinara sauce.",
+      "buttonText": "Order Now",
+      "contentComponent": "SnacksContent3",
+      "capacities": [
+        { "value": "Capacity 1", "active": true },
+        { "value": "Capacity 2", "active": false }
+      ],
+      "price": "$6"
+    },
+    {
+      "id": "0004",
+      "title": "Chicken Wings",
+      "imageUrl": "/0000020.webp",
+      "description": "Spicy chicken wings with a side of ranch.",
+      "buttonText": "Order Now",
+      "contentComponent": "SnacksContent4",
+      "capacities": [
+        { "value": "Capacity 1", "active": true },
+        { "value": "Capacity 2", "active": false }
+      ],
+      "price": "$8"
+    },
+    {
+      "id": "0005",
+      "title": "Veggie Platter",
+      "imageUrl": "/0000021.webp",
+      "description": "Fresh veggie platter with a side of hummus.",
+      "buttonText": "Order Now",
+      "contentComponent": "SnacksContent5",
+      "capacities": [
+        { "value": "Capacity 1", "active": true },
+        { "value": "Capacity 2", "active": false }
+      ],
+      "price": "$9"
+    }
+  ]
+}

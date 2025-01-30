@@ -1,30 +1,69 @@
 {
-    "card": [
-      {
-        "id": "1",
-        "title": "Sushi bol with salmon and Kamchatka crab",
-        "imageUrl": "/000002.webp",
-        "description": "Serving size: 45 g.",
-        "buttonText": "Order",
-        "contentComponent": "RollsContent1",
-        "capacities": [
-          { "value": "Recipe", "active": true },
-          { "value": "80 calories", "active": false }
-        ],
-        "price": "44 zł"
-      },
-      {
-        "id": "2",
-        "title": "Rolls Item 2",
-        "imageUrl": "/000003.webp",
-        "description": "Delicious rolls item 2.",
-        "buttonText": "Order Now",
-        "contentComponent": "RollsContent2",
-        "capacities": [
-          { "value": "Recipe", "active": true },
-          { "value": "80 calories", "active": false }
-        ],
-        "price": "$18"
-      }
-    ]
-  }
+  "card": [
+    {
+      "id": "1",
+      "title": "Sushi bol with salmon and Kamchatka crab",
+      "imageUrl": "/000002.webp",
+      "description": "Serving size: 45 g.",
+      "buttonText": "Order",
+      "contentComponent": "RollsContent1",
+      "capacities": [
+        { "value": "Recipe", "active": true },
+        { "value": "🔥80 calories", "active": false }
+      ],
+      "price": "44 zł"
+    },
+    {
+      "id": "2",
+      "title": "Rolls Item 2",
+      "imageUrl": "/000003.webp",
+      "description": "Delicious rolls item 2.",
+      "buttonText": "Order Now",
+      "contentComponent": "RollsContent2",
+      "capacities": [
+        { "value": "Recipe", "active": true },
+        { "value": "80 calories", "active": false }
+      ],
+      "price": "22 zł"
+    },
+    {
+      "id": "3",
+      "title": "California Roll",
+      "imageUrl": "/000004.webp",
+      "description": "Classic California roll with crab and avocado.",
+      "buttonText": "Order Now",
+      "contentComponent": "RollsContent3",
+      "capacities": [
+        { "value": "📖Recipe", "active": true },
+        { "value": "90 calories", "active": false }
+      ],
+      "price": "30 zł"
+    },
+    {
+      "id": "4",
+      "title": "Spicy Tuna Roll",
+      "imageUrl": "/000005.webp",
+      "description": "Spicy tuna roll with a kick of flavor.",
+      "buttonText": "Order Now",
+      "contentComponent": "RollsContent4",
+      "capacities": [
+        { "value": "Recipe", "active": true },
+        { "value": "100 calories", "active": false }
+      ],
+      "price": "35 zł"
+    },
+    {
+      "id": "5",
+      "title": "Vegetarian Roll",
+      "imageUrl": "/000006.webp",
+      "description": "Fresh vegetarian roll with cucumber and avocado.",
+      "buttonText": "Order Now",
+      "contentComponent": "RollsContent5",
+      "capacities": [
+        { "value": "Recipe", "active": true },
+        { "value": "70 calories", "active": false }
+      ],
+      "price": "25 zł"
+    }
+  ]
+}

@@ -1,30 +1,69 @@
 {
-    "card": [
-      {
-        "id": "01",
-        "title": "Salads Item 1",
-        "imageUrl": "/000004.webp",
-        "description": "Delicious salads item 1.",
-        "buttonText": "Order Now",
-        "contentComponent": "SaladsContent1",
-        "capacities": [
-          { "value": "Capacity 1", "active": true },
-          { "value": "Capacity 2", "active": false }
-        ],
-        "price": "$8"
-      },
-      {
-        "id": "02",
-        "title": "Salads Item 2",
-        "imageUrl": "/000005.webp",
-        "description": "Delicious salads item 2.",
-        "buttonText": "Order Now",
-        "contentComponent": "SaladsContent2",
-        "capacities": [
-          { "value": "Capacity 1", "active": true },
-          { "value": "Capacity 2", "active": false }
-        ],
-        "price": "$10"
-      }
-    ]
-  }
+  "card": [
+    {
+      "id": "01",
+      "title": "Salads Item 1",
+      "imageUrl": "/000007.webp",
+      "description": "Delicious salads item 1.",
+      "buttonText": "Order Now",
+      "contentComponent": "SaladsContent1",
+      "capacities": [
+        { "value": "Capacity 1", "active": true },
+        { "value": "Capacity 2", "active": false }
+      ],
+      "price": "$8"
+    },
+    {
+      "id": "02",
+      "title": "Salads Item 2",
+      "imageUrl": "/000008.webp",
+      "description": "Delicious salads item 2.",
+      "buttonText": "Order Now",
+      "contentComponent": "SaladsContent2",
+      "capacities": [
+        { "value": "Capacity 1", "active": true },
+        { "value": "Capacity 2", "active": false }
+      ],
+      "price": "$10"
+    },
+    {
+      "id": "03",
+      "title": "Greek Salad",
+      "imageUrl": "/000009.webp",
+      "description": "Fresh Greek salad with feta and olives.",
+      "buttonText": "Order Now",
+      "contentComponent": "SaladsContent3",
+      "capacities": [
+        { "value": "Capacity 1", "active": true },
+        { "value": "Capacity 2", "active": false }
+      ],
+      "price": "$12"
+    },
+    {
+      "id": "04",
+      "title": "Caesar Salad",
+      "imageUrl": "/0000010.webp",
+      "description": "Classic Caesar salad with chicken and parmesan.",
+      "buttonText": "Order Now",
+      "contentComponent": "SaladsContent4",
+      "capacities": [
+        { "value": "Capacity 1", "active": true },
+        { "value": "Capacity 2", "active": false }
+      ],
+      "price": "$15"
+    },
+    {
+      "id": "05",
+      "title": "Vegetarian Salad",
+      "imageUrl": "/0000011.webp",
+      "description": "Light vegetarian salad with seasonal vegetables.",
+      "buttonText": "Order Now",
+      "contentComponent": "SaladsContent5",
+      "capacities": [
+        { "value": "Capacity 1", "active": true },
+        { "value": "Capacity 2", "active": false }
+      ],
+      "price": "$11"
+    }
+  ]
+}

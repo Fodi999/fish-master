@@ -1,30 +1,69 @@
 {
-    "card": [
-      {
-        "id": "1",
-        "title": "Kulki sushi z łososiem i krabem kamczackim.",
-        "imageUrl": "/000002.webp",
-        "description": "Wielkość porcji: 45 g",
-        "buttonText": "Zamów",
-        "contentComponent": "RollsContent1",
-        "capacities": [
-          { "value": "Przepis", "active": true },
-          { "value": "80 kalorie", "active": false }
-        ],
-        "price": "44 zł"
-      },
-      {
-        "id": "2",
-        "title": "Rolls Item 2",
-        "imageUrl": "/000003.webp",
-        "description": "Pyszne rolls item 2.",
-        "buttonText": "Zamów ",
-        "contentComponent": "RollsContent2",
-        "capacities": [
-          { "value": "Pojemność 1", "active": true },
-          { "value": "Pojemność 2", "active": false }
-        ],
-        "price": "18 zł"
-      }
-    ]
-  }
+  "card": [
+    {
+      "id": "1",
+      "title": "Kulki sushi z łososiem i krabem kamczackim",
+      "imageUrl": "/000002.webp",
+      "description": "Wielkość porcji: 45 g",
+      "buttonText": "Zamów",
+      "contentComponent": "RollsContent1",
+      "capacities": [
+        { "value": "📖Przepis", "active": true },
+        { "value": "🔥80 kalorie", "active": false }
+      ],
+      "price": "44 zł"
+    },
+    {
+      "id": "2",
+      "title": "Rolls Item 2",
+      "imageUrl": "/000003.webp",
+      "description": "Pyszne rolls item 2.",
+      "buttonText": "Zamów",
+      "contentComponent": "RollsContent2",
+      "capacities": [
+        { "value": "Przepis", "active": true },
+        { "value": "80 kalorie", "active": false }
+      ],
+      "price": "22 zł"
+    },
+    {
+      "id": "3",
+      "title": "California Roll",
+      "imageUrl": "/000004.webp",
+      "description": "Klasyczny California roll z krabem i awokado.",
+      "buttonText": "Zamów",
+      "contentComponent": "RollsContent3",
+      "capacities": [
+        { "value": "Przepis", "active": true },
+        { "value": "90 kalorie", "active": false }
+      ],
+      "price": "30 zł"
+    },
+    {
+      "id": "4",
+      "title": "Spicy Tuna Roll",
+      "imageUrl": "/000005.webp",
+      "description": "Pikantny tuna roll z nutą smaku.",
+      "buttonText": "Zamów",
+      "contentComponent": "RollsContent4",
+      "capacities": [
+        { "value": "Przepis", "active": true },
+        { "value": "100 kalorie", "active": false }
+      ],
+      "price": "35 zł"
+    },
+    {
+      "id": "5",
+      "title": "Vegetarian Roll",
+      "imageUrl": "/000006.webp",
+      "description": "Świeży vegetarian roll z ogórkiem i awokado.",
+      "buttonText": "Zamów",
+      "contentComponent": "RollsContent5",
+      "capacities": [
+        { "value": "Przepis", "active": true },
+        { "value": "70 kalorie", "active": false }
+      ],
+      "price": "25 zł"
+    }
+  ]
+}
