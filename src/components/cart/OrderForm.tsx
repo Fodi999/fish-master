@@ -3,214 +3,221 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/context/ThemeContext";
-import { Phone, User, MapPin, Home, Calendar, MessageSquare, Tag, Gift, Users } from "lucide-react";
+import { Phone, User, MapPin, Home, Calendar, MessageSquare, Tag, Gift, Users, Plus, Minus } from "lucide-react";
+
+const ToggleButton = ({ 
+  value, 
+  label, 
+  isActive, 
+  onClick, 
+  icon 
+}: {
+  value: string;
+  label: string;
+  isActive: boolean;
+  onClick: (value: string) => void;
+  icon?: React.ReactNode;
+}) => (
+  <Button
+    variant={isActive ? "default" : "outline"}
+    onClick={() => onClick(value)}
+    type="button"
+    className={`h-16 rounded-xl gap-3 text-base justify-start transition-all ${
+      isActive 
+        ? "bg-gradient-to-r from-blue-500 to-teal-500 text-white shadow-lg" 
+        : "hover:bg-gray-200 dark:hover:bg-gray-600 hover:shadow-md"
+    }`}
+  >
+    {icon && icon}
+    {label}
+  </Button>
+);
+
+const SectionHeader = ({ 
+  icon, 
+  title 
+}: {
+  icon: React.ReactNode;
+  title: string;
+}) => (
+  <div className="flex items-center gap-3 mb-4">
+    <div className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700">
+      {icon}
+    </div>
+    <h3 className="text-xl font-semibold">{title}</h3>
+  </div>
+);
+
+const InputWithIcon = ({ 
+  icon, 
+  ...props 
+}: {
+  icon: React.ReactNode;
+} & React.InputHTMLAttributes<HTMLInputElement>) => (
+  <div className="relative">
+    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+      {icon}
+    </div>
+    <input
+      {...props}
+      className={`w-full p-4 rounded-xl border-2 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-all
+        bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 
+        text-gray-900 dark:text-gray-100 pl-12`}
+    />
+  </div>
+);
 
 export default function OrderForm() {
   const { isDarkMode } = useTheme();
-  const [paymentMethod, setPaymentMethod] = useState("cash");
-  const [deliveryMethod, setDeliveryMethod] = useState("courier");
-  const [deliveryDate, setDeliveryDate] = useState("today");
-  const [city, setCity] = useState("Днепр");
-  const [deliveryTime, setDeliveryTime] = useState("");
-  const [personsCount, setPersonsCount] = useState(1);
-
-  const inputStyle = `w-full p-4 rounded-xl border-2 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-all ${
-    isDarkMode 
-      ? "bg-gray-800 border-gray-700 text-gray-100" 
-      : "bg-gray-50 border-gray-200 text-gray-900"
-  }`;
+  const [formState, setFormState] = useState({
+    paymentMethod: "cash",
+    deliveryMethod: "courier",
+    deliveryDate: "today",
+    city: "Dnipro",
+    deliveryTime: "",
+    personsCount: 1
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if(deliveryDate === "scheduled" && !deliveryTime) {
-      alert("Пожалуйста, выберите время доставки!");
+    if(formState.deliveryDate === "scheduled" && !formState.deliveryTime) {
+      alert("Please select delivery time!");
       return;
     }
-    alert(`Заказ оформлен! 
-      Время доставки: ${deliveryDate === 'today' ? 'Сегодня' : deliveryTime}
-      Количество персон: ${personsCount}`);
+    alert(`Order confirmed! 
+      Delivery time: ${formState.deliveryDate === 'today' ? 'Today' : formState.deliveryTime}
+      Number of people: ${formState.personsCount}`);
   };
 
-  const handlePersonsChange = (operation: "increment" | "decrement") => {
-    setPersonsCount(prev => {
-      if(operation === "decrement" && prev > 1) return prev - 1;
-      if(operation === "increment" && prev < 10) return prev + 1;
-      return prev;
-    });
+  const updateState = (field: string, value: string | number) => {
+    setFormState(prev => ({ ...prev, [field]: value }));
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className={`rounded-2xl p-6 sm:p-8 shadow-xl transition-all ${
-        isDarkMode ? "bg-gray-800" : "bg-white"
-      }`}
+      className="rounded-2xl p-6 sm:p-8 shadow-xl bg-white dark:bg-gray-800 transition-all"
     >
-      <h2 className={`text-3xl font-bold mb-8 bg-gradient-to-r from-blue-400 to-teal-500 bg-clip-text text-transparent`}>
-        Оформление заказа
+      <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-blue-400 to-teal-500 bg-clip-text text-transparent">
+        Place Order
       </h2>
 
       <div className="space-y-8">
-        {/* Контактная информация */}
-        <div className="space-y-6">
-          <div className="flex items-center gap-3">
-            <User className={`h-6 w-6 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`} />
-            <h3 className="text-xl font-semibold">Контактная информация</h3>
-          </div>
-          
+        {/* Contact Information */}
+        <div className="space-y-4">
+          <SectionHeader 
+            icon={<User className={`h-6 w-6 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`} />} 
+            title="Contact Information" 
+          />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="relative">
-              <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-              <input
-                type="tel"
-                placeholder="Телефон*"
-                className={`${inputStyle} pl-12`}
-                required
-              />
-            </div>
-            <div className="relative">
-              <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Имя*"
-                className={`${inputStyle} pl-12`}
-                required
-              />
-            </div>
+            <InputWithIcon 
+              icon={<Phone className="h-5 w-5" />} 
+              type="tel" 
+              placeholder="Phone*" 
+              required 
+            />
+            <InputWithIcon 
+              icon={<User className="h-5 w-5" />} 
+              type="text" 
+              placeholder="Name*" 
+              required 
+            />
           </div>
         </div>
 
-        {/* Способ оплаты */}
-        <div className="space-y-6">
-          <div className="flex items-center gap-3">
-            <div className={`p-2 rounded-lg ${isDarkMode ? "bg-gray-700" : "bg-gray-100"}`}>
-              <Tag className={`h-6 w-6 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`} />
-            </div>
-            <h3 className="text-xl font-semibold">Способ оплаты</h3>
-          </div>
-          
+        {/* Payment Method */}
+        <div className="space-y-4">
+          <SectionHeader
+            icon={<Tag className={`h-6 w-6 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`} />}
+            title="Payment Method"
+          />
           <div className="flex flex-wrap gap-3">
-            {[
-              { value: "cash", label: "Наличными" },
-              { value: "card", label: "Картой" }
-            ].map((method) => (
-              <Button
-                key={method.value}
-                variant={paymentMethod === method.value ? "default" : "outline"}
-                className={`rounded-xl px-6 py-4 text-base ${
-                  paymentMethod === method.value 
-                    ? "bg-gradient-to-r from-blue-500 to-teal-500 text-white" 
-                    : isDarkMode 
-                      ? "bg-gray-700 hover:bg-gray-600" 
-                      : "bg-gray-100 hover:bg-gray-200"
-                }`}
-                onClick={() => setPaymentMethod(method.value)}
-                type="button"
-              >
-                {method.label}
-              </Button>
+            {["cash", "card"].map(method => (
+              <ToggleButton
+                key={method}
+                value={method}
+                label={method === "cash" ? "Cash" : "Credit Card"}
+                isActive={formState.paymentMethod === method}
+                onClick={v => updateState("paymentMethod", v)}
+              />
             ))}
           </div>
         </div>
 
-        {/* Способ получения */}
-        <div className="space-y-6">
-          <div className="flex items-center gap-3">
-            <div className={`p-2 rounded-lg ${isDarkMode ? "bg-gray-700" : "bg-gray-100"}`}>
-              <Gift className={`h-6 w-6 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`} />
-            </div>
-            <h3 className="text-xl font-semibold">Способ получения</h3>
-          </div>
-          
+        {/* Delivery Method */}
+        <div className="space-y-4">
+          <SectionHeader
+            icon={<Gift className={`h-6 w-6 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`} />}
+            title="Delivery Method"
+          />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[
-              { value: "courier", label: "Курьером", icon: <MapPin className="h-5 w-5" /> },
-              { value: "pickup", label: "Самовывоз", icon: <Home className="h-5 w-5" /> }
-            ].map((method) => (
-              <Button
+              { value: "courier", label: "Courier", icon: <MapPin className="h-5 w-5" /> },
+              { value: "pickup", label: "Pickup", icon: <Home className="h-5 w-5" /> }
+            ].map(method => (
+              <ToggleButton
                 key={method.value}
-                variant={deliveryMethod === method.value ? "default" : "outline"}
-                className={`h-16 rounded-xl justify-start gap-3 text-base ${
-                  deliveryMethod === method.value 
-                    ? "bg-gradient-to-r from-blue-500 to-teal-500 text-white" 
-                    : isDarkMode 
-                      ? "bg-gray-700 hover:bg-gray-600" 
-                      : "bg-gray-100 hover:bg-gray-200"
-                }`}
-                onClick={() => setDeliveryMethod(method.value)}
-                type="button"
-              >
-                {method.icon}
-                {method.label}
-              </Button>
+                {...method}
+                isActive={formState.deliveryMethod === method.value}
+                onClick={v => updateState("deliveryMethod", v)}
+              />
             ))}
           </div>
         </div>
 
-        {/* Количество персон */}
-        <div className="space-y-6">
-          <div className="flex items-center gap-3">
-            <div className={`p-2 rounded-lg ${isDarkMode ? "bg-gray-700" : "bg-gray-100"}`}>
-              <Users className={`h-6 w-6 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`} />
-            </div>
-            <h3 className="text-xl font-semibold">Количество персон</h3>
-          </div>
-          
+        {/* People Counter */}
+        <div className="space-y-4">
+          <SectionHeader
+            icon={<Users className={`h-6 w-6 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`} />}
+            title="Number of People"
+          />
           <div className="flex items-center gap-4">
             <Button
               type="button"
-              onClick={() => handlePersonsChange("decrement")}
-              className={`h-12 w-12 rounded-full text-2xl ${
-                isDarkMode 
-                  ? "bg-gray-700 hover:bg-gray-600" 
-                  : "bg-gray-100 hover:bg-gray-200"
-              }`}
-              disabled={personsCount === 1}
+              onClick={() => updateState("personsCount", Math.max(1, formState.personsCount - 1))}
+              className="h-12 w-12 rounded-full text-2xl flex items-center justify-center 
+                        bg-gradient-to-br from-blue-400 to-teal-400 hover:from-blue-500 hover:to-teal-500 
+                        text-white shadow-lg hover:shadow-xl transition-all"
+              disabled={formState.personsCount === 1}
             >
-              -
+              <Minus className="h-6 w-6" />
             </Button>
             
-            <input
-              type="number"
-              value={personsCount}
-              readOnly
-              className={`${inputStyle} w-24 text-center text-xl font-bold`}
-              min="1"
-              max="10"
-            />
+            <div className="w-24 text-center text-xl font-bold p-4 rounded-xl border-2 
+                          bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              {formState.personsCount}
+            </div>
             
             <Button
               type="button"
-              onClick={() => handlePersonsChange("increment")}
-              className={`h-12 w-12 rounded-full text-2xl ${
-                isDarkMode 
-                  ? "bg-gray-700 hover:bg-gray-600" 
-                  : "bg-gray-100 hover:bg-gray-200"
-              }`}
-              disabled={personsCount === 10}
+              onClick={() => updateState("personsCount", Math.min(10, formState.personsCount + 1))}
+              className="h-12 w-12 rounded-full text-2xl flex items-center justify-center 
+                        bg-gradient-to-br from-blue-400 to-teal-400 hover:from-blue-500 hover:to-teal-500 
+                        text-white shadow-lg hover:shadow-xl transition-all"
+              disabled={formState.personsCount === 10}
             >
-              +
+              <Plus className="h-6 w-6" />
             </Button>
           </div>
         </div>
 
-        {/* Адрес доставки */}
-        <div className="space-y-6">
-          <div className="flex items-center gap-3">
-            <MapPin className={`h-6 w-6 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`} />
-            <h3 className="text-xl font-semibold">Адрес доставки</h3>
-          </div>
-          
+        {/* Delivery Address */}
+        <div className="space-y-4">
+          <SectionHeader
+            icon={<MapPin className={`h-6 w-6 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`} />}
+            title="Delivery Address"
+          />
           <div className="space-y-4">
             <div className="relative">
               <select
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                className={`${inputStyle} cursor-pointer appearance-none`}
+                value={formState.city}
+                onChange={(e) => updateState("city", e.target.value)}
+                className="w-full p-4 rounded-xl border-2 cursor-pointer appearance-none
+                          bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700"
               >
-                <option value="Днепр">Днепр</option>
-                <option value="Киев">Киев</option>
-                <option value="Львов">Львов</option>
+                <option value="Dnipro">Dnipro</option>
+                <option value="Kyiv">Kyiv</option>
+                <option value="Lviv">Lviv</option>
               </select>
               <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
                 ▼
@@ -218,113 +225,37 @@ export default function OrderForm() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="relative">
-                <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-                <input 
-                  type="text" 
-                  placeholder="Улица*" 
-                  className={`${inputStyle} pl-12`} 
-                  required
-                />
-              </div>
-              <div className="relative">
-                <Home className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-                <input 
-                  type="text" 
-                  placeholder="Дом*" 
-                  className={`${inputStyle} pl-12`} 
-                  required
-                />
-              </div>
+              <InputWithIcon 
+                icon={<MapPin className="h-5 w-5" />} 
+                type="text" 
+                placeholder="Street*" 
+                required 
+              />
+              <InputWithIcon 
+                icon={<Home className="h-5 w-5" />} 
+                type="text" 
+                placeholder="House*" 
+                required 
+              />
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-              <input type="text" placeholder="Квартира" className={inputStyle} />
-              <input type="text" placeholder="Подъезд" className={inputStyle} />
-              <input type="text" placeholder="Этаж" className={inputStyle} />
-              <input type="text" placeholder="Код двери" className={inputStyle} />
+              <input type="text" placeholder="Apartment" className="w-full p-4 rounded-xl border-2 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700" />
+              <input type="text" placeholder="Entrance" className="w-full p-4 rounded-xl border-2 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700" />
+              <input type="text" placeholder="Floor" className="w-full p-4 rounded-xl border-2 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700" />
+              <input type="text" placeholder="Door Code" className="w-full p-4 rounded-xl border-2 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700" />
             </div>
           </div>
         </div>
 
-        {/* Время доставки */}
-        <div className="space-y-6">
-          <div className="flex items-center gap-3">
-            <Calendar className={`h-6 w-6 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`} />
-            <h3 className="text-xl font-semibold">Время доставки</h3>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {[
-              { value: "today", label: "Сегодня" },
-              { value: "scheduled", label: "Выбрать время" }
-            ].map((method) => (
-              <Button
-                key={method.value}
-                variant={deliveryDate === method.value ? "default" : "outline"}
-                className={`h-16 rounded-xl text-base ${
-                  deliveryDate === method.value 
-                    ? "bg-gradient-to-r from-blue-500 to-teal-500 text-white" 
-                    : isDarkMode 
-                      ? "bg-gray-700 hover:bg-gray-600" 
-                      : "bg-gray-100 hover:bg-gray-200"
-                }`}
-                onClick={() => setDeliveryDate(method.value)}
-                type="button"
-              >
-                {method.label}
-              </Button>
-            ))}
-          </div>
-
-          {deliveryDate === "scheduled" && (
-            <div className="mt-4">
-              <input
-                type="time"
-                value={deliveryTime}
-                onChange={(e) => setDeliveryTime(e.target.value)}
-                className={`${inputStyle}`}
-                required
-              />
-            </div>
-          )}
-        </div>
-
-        {/* Дополнительная информация */}
-        <div className="space-y-6">
-          <div className="flex items-center gap-3">
-            <MessageSquare className={`h-6 w-6 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`} />
-            <h3 className="text-xl font-semibold">Дополнительно</h3>
-          </div>
-          
-          <div className="space-y-4">
-            <div className="relative">
-              <MessageSquare className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Комментарий к заказу"
-                className={`${inputStyle} pl-12`}
-              />
-            </div>
-            
-            <div className="relative">
-              <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-              <input
-                type="email"
-                placeholder="E-mail (для отправки чека)"
-                className={`${inputStyle} pl-12`}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Кнопка подтверждения */}
+        {/* Confirm Button */}
         <Button
           type="submit"
-          className={`w-full py-6 text-xl rounded-xl font-bold bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 
-            transition-all transform hover:scale-[1.02] hover:shadow-xl`}
+          className="w-full py-6 text-xl rounded-xl font-bold bg-gradient-to-r from-blue-500 to-teal-500 
+                    hover:from-blue-600 hover:to-teal-600 text-white shadow-xl hover:shadow-2xl 
+                    transition-all transform hover:scale-[1.02]"
         >
-          Подтвердить заказ
+          Confirm Order
         </Button>
       </div>
     </form>
