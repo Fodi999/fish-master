@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/context/ThemeContext";
-import { Phone, User, MapPin, Home, Tag, Gift, Users, Plus, Minus } from "lucide-react";
+import { Phone, User, MapPin, Home,  Tag, Gift, Users, Plus, Minus } from "lucide-react";
 
 const ToggleButton = ({ 
   value, 
