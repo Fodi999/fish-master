@@ -1,11 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useTheme } from "@/context/ThemeContext";
 import Image from "next/image";
+import ConsultationSection from "@/components/about/ConsultationSection";
 
 const PortfolioPage = () => {
   const { isDarkMode } = useTheme();
+  const [showConsultation, setShowConsultation] = useState(false);
+
+  const handleButtonClick = () => {
+    setShowConsultation(!showConsultation);
+  };
 
   return (
     <div
@@ -140,6 +146,7 @@ const PortfolioPage = () => {
               let&apos;s create something extraordinary from the ocean&apos;s bounty.
             </p>
             <button 
+              onClick={handleButtonClick}
               className={`px-8 py-4 rounded-full font-bold transition-all duration-300 transform hover:scale-105 ${
                 isDarkMode 
                   ? "bg-white text-blue-600 hover:shadow-2xl hover:shadow-white/20" 
@@ -151,6 +158,8 @@ const PortfolioPage = () => {
             </button>
           </div>
         </section>
+
+        {showConsultation && <ConsultationSection />}
       </div>
     </div>
   );

@@ -3,70 +3,11 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/context/ThemeContext";
-import { Phone, User, MapPin, Home,  Tag, Gift, Users, Plus, Minus } from "lucide-react";
-
-const ToggleButton = ({ 
-  value, 
-  label, 
-  isActive, 
-  onClick, 
-  icon 
-}: {
-  value: string;
-  label: string;
-  isActive: boolean;
-  onClick: (value: string) => void;
-  icon?: React.ReactNode;
-}) => (
-  <Button
-    variant={isActive ? "default" : "outline"}
-    onClick={() => onClick(value)}
-    type="button"
-    className={`h-16 rounded-xl gap-3 text-base justify-start transition-all ${
-      isActive 
-        ? "bg-gradient-to-r from-blue-500 to-teal-500 text-white shadow-lg" 
-        : "hover:bg-gray-200 dark:hover:bg-gray-600 hover:shadow-md"
-    }`}
-  >
-    {icon && icon}
-    {label}
-  </Button>
-);
-
-const SectionHeader = ({ 
-  icon, 
-  title 
-}: {
-  icon: React.ReactNode;
-  title: string;
-}) => (
-  <div className="flex items-center gap-3 mb-4">
-    <div className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700">
-      {icon}
-    </div>
-    <h3 className="text-xl font-semibold">{title}</h3>
-  </div>
-);
-
-const InputWithIcon = ({ 
-  icon, 
-  ...props 
-}: {
-  icon: React.ReactNode;
-} & React.InputHTMLAttributes<HTMLInputElement>) => (
-  <div className="relative">
-    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-      {icon}
-    </div>
-    <input
-      {...props}
-      className={`w-full p-4 rounded-xl border-2 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-all
-        bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 
-        text-gray-900 dark:text-gray-100 pl-12`}
-    />
-  </div>
-);
-
+import { Phone, User, MapPin, Home, Tag, Gift, Users, Plus, Minus } from "lucide-react";
+import ToggleButton from "./form/ToggleButton";
+import SectionHeader from "./form/SectionHeader";
+import InputWithIcon from "./form/InputWithIcon";
+import DeliveryTime from "./form/DeliveryTime";
 export default function OrderForm() {
   const { isDarkMode } = useTheme();
   const [formState, setFormState] = useState({
@@ -138,7 +79,7 @@ export default function OrderForm() {
                 value={method}
                 label={method === "cash" ? "Cash" : "Credit Card"}
                 isActive={formState.paymentMethod === method}
-                onClick={v => updateState("paymentMethod", v)}
+                onClick={(v: string) => updateState("paymentMethod", v)}
               />
             ))}
           </div>
@@ -159,7 +100,7 @@ export default function OrderForm() {
                 key={method.value}
                 {...method}
                 isActive={formState.deliveryMethod === method.value}
-                onClick={v => updateState("deliveryMethod", v)}
+                onClick={(v: string) => updateState("deliveryMethod", v)}
               />
             ))}
           </div>
@@ -248,7 +189,14 @@ export default function OrderForm() {
           </div>
         </div>
 
-        {/* Confirm Button */}
+        {/* Delivery Time */}
+        <DeliveryTime
+          deliveryDate={formState.deliveryDate}
+          deliveryTime={formState.deliveryTime}
+          updateState={updateState}
+        />
+
+        {/* Confirm Order Button */}
         <Button
           type="submit"
           className="w-full py-6 text-xl rounded-xl font-bold bg-gradient-to-r from-blue-500 to-teal-500 

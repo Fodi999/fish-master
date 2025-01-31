@@ -40,7 +40,7 @@ export default function CartPage() {
     >
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl sm:text-4xl font-bold mb-8 text-center bg-gradient-to-r from-blue-400 to-teal-500 bg-clip-text text-transparent">
-        Basket
+          Корзина
         </h1>
 
         {localCart.length === 0 ? (
@@ -74,14 +74,14 @@ export default function CartPage() {
               showOrderForm={showOrderForm}
               onToggleOrderForm={handleToggleOrderForm}
             />
+          </div>
+        )}
 
-            {/* Форма заказа, если она включена */}
-            {showOrderForm && (
-              <div className="w-full lg:w-2/2 animate-slide-in">
-                {/* Подключаем OrderForm из components/OrderForm.tsx */}
-                <OrderForm />
-              </div>
-            )}
+        {/* Форма заказа, если она включена */}
+        {showOrderForm && (
+          <div className="w-full lg:w-2/2 animate-slide-in mt-6">
+            {/* Подключаем OrderForm из components/OrderForm.tsx */}
+            <OrderForm />
           </div>
         )}
       </div>
