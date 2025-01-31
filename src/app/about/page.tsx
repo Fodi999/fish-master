@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useTheme } from "@/context/ThemeContext";
 import Image from "next/image";
 import ConsultationSection from "@/components/about/ConsultationSection";
@@ -8,10 +8,17 @@ import ConsultationSection from "@/components/about/ConsultationSection";
 const PortfolioPage = () => {
   const { isDarkMode } = useTheme();
   const [showConsultation, setShowConsultation] = useState(false);
+  const consultationRef = useRef<HTMLDivElement>(null);
 
   const handleButtonClick = () => {
     setShowConsultation(!showConsultation);
   };
+
+  useEffect(() => {
+    if (showConsultation && consultationRef.current) {
+      consultationRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [showConsultation]);
 
   return (
     <div
@@ -159,7 +166,11 @@ const PortfolioPage = () => {
           </div>
         </section>
 
-        {showConsultation && <ConsultationSection />}
+        {showConsultation && (
+          <div ref={consultationRef}>
+            <ConsultationSection />
+          </div>
+        )}
       </div>
     </div>
   );

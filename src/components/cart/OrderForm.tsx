@@ -8,6 +8,7 @@ import ToggleButton from "./form/ToggleButton";
 import SectionHeader from "./form/SectionHeader";
 import InputWithIcon from "./form/InputWithIcon";
 import DeliveryTime from "./form/DeliveryTime";
+
 export default function OrderForm() {
   const { isDarkMode } = useTheme();
   const [formState, setFormState] = useState({
@@ -21,7 +22,7 @@ export default function OrderForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if(formState.deliveryDate === "scheduled" && !formState.deliveryTime) {
+    if (formState.deliveryDate === "scheduled" && !formState.deliveryTime) {
       alert("Please select delivery time!");
       return;
     }

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import Link from "next/link";
 import { useTheme } from "@/context/ThemeContext";
 import { Card, CardFooter } from "@/components/ui/card";
@@ -20,6 +20,13 @@ export default function CartSummary({
   onToggleOrderForm,
 }: CartSummaryProps) {
   const { isDarkMode } = useTheme();
+  const orderFormRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (showOrderForm && orderFormRef.current) {
+      orderFormRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [showOrderForm]);
 
   // Форматируем число в валюту
   const formatPrice = (price: number) => {
@@ -90,7 +97,12 @@ export default function CartSummary({
                     ? "bg-green-600 hover:bg-green-700 hover:shadow-green-600/30"
                     : "bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white hover:shadow-xl"
                 }`}
-                onClick={onToggleOrderForm}
+                onClick={() => {
+                  onToggleOrderForm();
+                  if (orderFormRef.current) {
+                    orderFormRef.current.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
               >
                 {showOrderForm ? "Свернуть форму" : "Оформить заказ"}
               </Button>
@@ -98,6 +110,7 @@ export default function CartSummary({
           </div>
         </CardFooter>
       </Card>
+      {showOrderForm && <div ref={orderFormRef}></div>}
     </div>
   );
 }

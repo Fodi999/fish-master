@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Details from "./Details";
 
 const ConsultationSection = () => {
   const [selectedItem, setSelectedItem] = useState<number | null>(null);
+  const detailsRef = useRef<HTMLDivElement>(null);
 
   const items = [
     {
@@ -30,6 +31,12 @@ const ConsultationSection = () => {
       imageSrc: "/000004.webp"
     }
   ];
+
+  useEffect(() => {
+    if (selectedItem !== null && detailsRef.current) {
+      detailsRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [selectedItem]);
 
   return (
     <section className="text-center py-12 bg-gray-100 dark:bg-gray-800 rounded-3xl  border-b-4 mb-16">
@@ -73,11 +80,13 @@ const ConsultationSection = () => {
         </div>
 
         {selectedItem !== null && (
-          <Details 
-            title={items[selectedItem].title} 
-            details={items[selectedItem].details} 
-            imageSrc={items[selectedItem].imageSrc}
-          />
+          <div ref={detailsRef}>
+            <Details 
+              title={items[selectedItem].title} 
+              details={items[selectedItem].details} 
+              imageSrc={items[selectedItem].imageSrc}
+            />
+          </div>
         )}
       </div>
     </section>
