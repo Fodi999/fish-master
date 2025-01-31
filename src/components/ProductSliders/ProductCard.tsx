@@ -75,7 +75,7 @@ export default function ProductCard({
                       : "bg-blue-100 text-blue-600 hover:bg-blue-200"
                   }`}
                 >
-                  📖 {capacity.value}
+                   {capacity.value}
                 </span>
               </Link>
             ) : (

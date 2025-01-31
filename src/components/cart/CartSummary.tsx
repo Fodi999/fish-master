@@ -11,6 +11,7 @@ interface CartSummaryProps {
   totalPrice: number;
   showOrderForm: boolean;
   onToggleOrderForm: () => void;
+  calories: { value: string; active: boolean };
 }
 
 export default function CartSummary({
@@ -18,6 +19,7 @@ export default function CartSummary({
   totalPrice,
   showOrderForm,
   onToggleOrderForm,
+  calories,
 }: CartSummaryProps) {
   const { isDarkMode } = useTheme();
   const orderFormRef = useRef<HTMLDivElement>(null);
@@ -30,9 +32,9 @@ export default function CartSummary({
 
   // Форматируем число в валюту
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("ru-RU", {
+    return new Intl.NumberFormat("pl-PL", {
       style: "currency",
-      currency: "RUB",
+      currency: "PLN",
       minimumFractionDigits: 0,
     }).format(price);
   };
@@ -72,6 +74,22 @@ export default function CartSummary({
               </span>
               <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-teal-500 bg-clip-text text-transparent">
                 {formatPrice(totalPrice)}
+              </span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span
+                className={`text-lg ${
+                  isDarkMode ? "text-gray-300" : "text-gray-700"
+                }`}
+              >
+                Калории:
+              </span>
+              <span
+                className={`text-xl font-bold ${
+                  calories.active ? "text-red-500" : "text-gray-500"
+                }`}
+              >
+                {calories.value}
               </span>
             </div>
           </div>

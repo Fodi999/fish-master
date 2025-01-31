@@ -14,7 +14,8 @@ interface CartItemType {
   imageUrl: string;
   price: string; // или number, если у вас в контексте именно число
   quantity: number;
-  // ...добавьте при необходимости другие поля
+  capacities: { value: string; active: boolean }[]; // добавляем поле capacities
+  calories: number; // добавляем поле калорий
 }
 
 interface CartItemProps {
@@ -31,9 +32,9 @@ export default function CartItem({ item, index }: CartItemProps) {
 
   // Форматируем в валюту
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("ru-RU", {
+    return new Intl.NumberFormat("pl-PL", {
       style: "currency",
-      currency: "RUB",
+      currency: "PLN",
       minimumFractionDigits: 0,
     }).format(price);
   };
@@ -77,46 +78,9 @@ export default function CartItem({ item, index }: CartItemProps) {
               </p>
             </div>
 
-            {/* Количество, Цена, Удалить */}
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mt-4">
-              {/* Кнопки + / - для изменения кол-ва */}
-              <div className="flex items-center gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className={`h-10 w-10 p-0 rounded-xl text-lg transition-all ${
-                    isDarkMode
-                      ? "border-gray-600 hover:bg-gray-700"
-                      : "border-gray-300 hover:bg-gray-100"
-                  }`}
-                  onClick={() => decrementQuantity(item.id)}
-                  disabled={item.quantity <= 1}
-                >
-                  -
-                </Button>
-                <span
-                  className={`w-8 text-center font-medium text-lg ${
-                    isDarkMode ? "text-gray-200" : "text-gray-800"
-                  }`}
-                >
-                  {item.quantity}
-                </span>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className={`h-10 w-10 p-0 rounded-xl text-lg transition-all ${
-                    isDarkMode
-                      ? "border-gray-600 hover:bg-gray-700"
-                      : "border-gray-300 hover:bg-gray-100"
-                  }`}
-                  onClick={() => incrementQuantity(item.id)}
-                >
-                  +
-                </Button>
-              </div>
-
-              {/* Цена и кнопка «Удалить» */}
-              <div className="flex items-center gap-4">
+            {/* Цена, Калории, Количество, Удалить */}
+            <div className="flex flex-col gap-3 mt-4">
+              <div className="flex items-center justify-between">
                 <span
                   className={`text-xl font-bold ${
                     isDarkMode ? "text-blue-400" : "text-blue-600"
@@ -124,13 +88,58 @@ export default function CartItem({ item, index }: CartItemProps) {
                 >
                   {formatPrice(priceValue * item.quantity)}
                 </span>
+                <span
+                  className={`px-3 py-1 rounded-full text-sm flex items-center gap-2 transition-all ${
+                    isDarkMode
+                      ? "bg-blue-600/20 text-blue-400 hover:bg-blue-600/30"
+                      : "bg-blue-100 text-blue-600 hover:bg-blue-200"
+                  }`}
+                >
+                 🔥 {item.calories * item.quantity} kcal.
+                </span>
+              </div>
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className={`h-10 w-10 p-0 rounded-xl text-lg transition-all ${
+                      isDarkMode
+                        ? "border-gray-600 hover:bg-gray-700"
+                        : "border-gray-300 hover:bg-gray-100"
+                    }`}
+                    onClick={() => decrementQuantity(item.id)}
+                    disabled={item.quantity <= 1}
+                  >
+                    -
+                  </Button>
+                  <span
+                    className={`w-8 text-center font-medium text-lg ${
+                      isDarkMode ? "text-gray-200" : "text-gray-800"
+                    }`}
+                  >
+                    {item.quantity}
+                  </span>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className={`h-10 w-10 p-0 rounded-xl text-lg transition-all ${
+                      isDarkMode
+                        ? "border-gray-600 hover:bg-gray-700"
+                        : "border-gray-300 hover:bg-gray-100"
+                    }`}
+                    onClick={() => incrementQuantity(item.id)}
+                  >
+                    +
+                  </Button>
+                </div>
                 <Button
                   variant="destructive"
                   size="sm"
-                  className="h-10 px-6 rounded-xl font-medium transition-all"
+                  className="h-10 px-6 rounded-xl font-medium transition-all ml-auto"
                   onClick={() => removeFromCart(item.id)}
                 >
-                  Удалить
+                  Remove
                 </Button>
               </div>
             </div>
@@ -140,4 +149,3 @@ export default function CartItem({ item, index }: CartItemProps) {
     </Card>
   );
 }
-

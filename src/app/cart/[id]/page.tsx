@@ -32,6 +32,13 @@ export default function CartPage() {
     setShowOrderForm(!showOrderForm);
   };
 
+  // Суммируем калории
+  const totalCalories = localCart.reduce((sum, item) => {
+    const caloriesString = item.capacities?.find(capacity => capacity.value.includes("calories"))?.value.match(/\d+/)?.[0] || "0";
+    const calories = parseInt(caloriesString, 10);
+    return sum + calories * item.quantity;
+  }, 0);
+
   return (
     <div
       className={`min-h-screen pt-24 p-4 sm:p-6 transition-colors duration-300 ${
@@ -73,6 +80,7 @@ export default function CartPage() {
               totalPrice={totalPrice}
               showOrderForm={showOrderForm}
               onToggleOrderForm={handleToggleOrderForm}
+              calories={ { value: `🔥${totalCalories} kcal.`, active: totalCalories > 0 }}
             />
           </div>
         )}

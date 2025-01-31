@@ -8,8 +8,8 @@
       "buttonText": "Order",
       "contentComponent": "RollsContent1",
       "capacities": [
-        { "value": "Recipe", "active": true },
-        { "value": "🔥80 calories", "active": false }
+        { "value": "📖 Recipe", "active": true },
+        { "value": "🔥 80 calories", "active": false }
       ],
       "price": "44 zł"
     },
