@@ -36,7 +36,7 @@ const ContactPage = () => {
               Contact the Master
             </CardTitle>
             <CardDescription className={`text-lg ${isDarkMode ? "text-gray-400" : "text-gray-600"}`}>
-              Whether you&apos;re looking for a custom culinary experience or want to discuss a unique project - we&apos;ll craft perfection from the oceans bounty.
+              Whether you&apos;re looking fors a custom culinary experience or want to discuss a unique project - we&apos;ll craft perfection from the oceans bounty.
             </CardDescription>
           </CardHeader>
           <CardContent>
