@@ -19,13 +19,19 @@ export default function ChatBot() {
   // Функция отправки сообщений на сервер
   const getAIResponse = async (input: string) => {
     try {
-      const response = await fetch("http://127.0.0.1:3030/chat", {
+      // Используем условие для проверки, если приложение работает локально или на продакшн сервере
+      const baseUrl = process.env.NODE_ENV === "production"
+        ? "https://rust-chatbot-production.up.railway.app"  // URL на Railway
+        : "http://127.0.0.1:3030";  // Локальный сервер для разработки
+  
+      const response = await fetch(`${baseUrl}/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ message: input }),
       });
+      
       const data = await response.json();
       return data.response; // Ответ от бота
     } catch (error) {
@@ -33,6 +39,7 @@ export default function ChatBot() {
       return "Извините, произошла ошибка при обработке вашего запроса.";
     }
   };
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
