@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import MemoryService from "./MemoryService";
-import { getAIResponse } from "./rustAI";
 
 export type Message = {
   id: string;
@@ -16,6 +15,24 @@ export default function ChatBot() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const generateId = () => Math.random().toString(36).substr(2, 9);
+
+  // Функция отправки сообщений на сервер
+  const getAIResponse = async (input: string) => {
+    try {
+      const response = await fetch("http://127.0.0.1:3030/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: input }),
+      });
+      const data = await response.json();
+      return data.response; // Ответ от бота
+    } catch (error) {
+      console.error("Ошибка при запросе к серверу:", error);
+      return "Извините, произошла ошибка при обработке вашего запроса.";
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +53,7 @@ export default function ChatBot() {
     setInput("");
 
     try {
-      const responseText = await getAIResponse(currentInput); // Вызов функции с WASM
+      const responseText = await getAIResponse(currentInput); // Вызов функции с запросом к серверу
 
       const botMessage: Message = {
         id: generateId(),
@@ -114,13 +131,14 @@ export default function ChatBot() {
             className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 disabled:opacity-50 transition-colors"
             disabled={isLoading}
           >
-            {isLoading ? "..." : "Отправиь"}
+            {isLoading ? "..." : "Отправить"}
           </button>
         </div>
       </form>
     </div>
   );
 }
+
 
 
 
