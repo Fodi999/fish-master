@@ -22,7 +22,7 @@ export default function ChatBot() {
       // Используем условие для проверки, если приложение работает локально или на продакшн сервере
       const baseUrl = process.env.NODE_ENV === "production"
         ? "https://rust-chatbot-production.up.railway.app"  // URL на Railway
-        : "http://127.0.0.1:3030";  // Локальный сервер для разработки
+        : "http://localhost:8080";  // Локальный сервер для разработки
   
       const response = await fetch(`${baseUrl}/chat`, {
         method: "POST",
