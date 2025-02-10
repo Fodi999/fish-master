@@ -6,20 +6,19 @@ export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const { isDarkMode, toggleTheme } = useTheme();
 
-  // Определяем классы для виджета с учётом выбранной темы
+  // Контейнер виджета с учетом темы и вертикального расположения элементов
   const widgetContainerClasses = `
-    absolute bottom-24 right-0 w-[400px] h-[600px] rounded-xl shadow-xl overflow-hidden
+    absolute bottom-24 right-0 w-[400px] h-[600px] rounded-xl shadow-xl overflow-hidden flex flex-col
     ${isDarkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-200'}
   `;
 
-  // Заголовок виджета (хедер)
+  // Заголовок (хедер) виджета с нижней границей для разделения
   const headerClasses = `
-    p-4 flex items-center
-    ${isDarkMode ? 'bg-gray-900' : 'bg-blue-500'}
+    p-4 flex items-center justify-between border-b
+    ${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-blue-500 border-blue-400'}
   `;
 
-  // Тексты заголовка
-  const headerTitleClasses = `text-xl font-bold text-white`;
+  const headerTitleClasses = 'text-xl font-bold text-white';
   const headerSubtitleClasses = `${isDarkMode ? 'text-gray-300' : 'text-blue-100'}`;
 
   return (
@@ -35,8 +34,9 @@ export default function ChatWidget() {
 
       {isOpen && (
         <div className={widgetContainerClasses}>
+          {/* Заголовок виджета */}
           <div className={headerClasses}>
-            <div className="flex-1">
+            <div>
               <h2 className={headerTitleClasses}>👋 Привет!</h2>
               <p className={headerSubtitleClasses}>Чем могу помочь?</p>
             </div>
@@ -48,10 +48,8 @@ export default function ChatWidget() {
             </button>
           </div>
 
-          {/* Кнопка переключения темы */}
-          <div
-            className={`p-2 flex justify-end ${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}`}
-          >
+          {/* Переключатель темы */}
+          <div className={`p-2 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
             <button
               onClick={toggleTheme}
               className={`px-2 py-1 rounded text-sm ${
@@ -64,13 +62,16 @@ export default function ChatWidget() {
             </button>
           </div>
 
-          {/* Компонент чат-бота */}
-          <ChatBot />
+          {/* Область для чата с прокруткой */}
+          <div className="flex-1 overflow-y-auto">
+            <ChatBot />
+          </div>
         </div>
       )}
     </div>
   );
 }
+
 
 
 
